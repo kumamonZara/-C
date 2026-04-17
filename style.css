@@ -8,6 +8,8 @@
     --example-bg: #f9f4e8;
     --rensyuu-bg: #faf291;
     --play: #b9b9b9;
+    --setumei: #ad8910;
+    --ouyou: #11ddf1;
 }
 
 body {
@@ -37,7 +39,7 @@ h2 {
 }
 
 /* 数式ボックスの共通設定 */
-.reidai_box, .kousiki_box, .rensyu_box {
+.reidai_box, .kousiki_box, .rensyu_box, .setumei_box, .ouyou_box {
     position: relative;
     margin: 20px 0;
     padding: 25px 20px 15px;
@@ -49,6 +51,10 @@ h2 {
     background-color: var(--formula-bg);
 }
 
+.ouyou_box {
+    background-color: var(--ouyou-bg);
+}
+
 .reidai_box {
     background-color: var(--example-bg);
 }
@@ -56,10 +62,13 @@ h2 {
 .rensyu_box {
     background-color: var(--rensyuu-bg);
 }
+.setumei_box {
+    background-color: var(--setumei-bg);
+}
 
 /* 疑似要素によるラベル装飾 */
 .kousiki_box::before {
-    content: "基本ルール";
+    content: "公式";
     position: absolute;
     top: -10px;
     left: 15px;
@@ -72,7 +81,7 @@ h2 {
 }
 
 .reidai_box::before {
-    content: "例題・応用";
+    content: "例題";
     position: absolute;
     top: -10px;
     left: 15px;
@@ -96,7 +105,30 @@ h2 {
     font-weight: bold;
     border-radius: 4px;
 }
+.setumei_box::before {
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    background: var(--ink);
+    color: white;
+    padding: 2px 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 4px;
+}
 
+.ouyou_box::before {
+    content: "応用";
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    background: red;
+    color: white;
+    padding: 2px 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 4px;
+}
 /* テーブルのスタイリング */
 .symbol-table {
     width: 100%;

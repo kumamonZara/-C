@@ -35,7 +35,7 @@ h2 {
 }
 
 /* 数式ボックスの共通設定 */
-.formula-box, .example-box {
+.reidai_box, .kousiki_box {
     position: relative;
     margin: 20px 0;
     padding: 25px 20px 15px;
@@ -43,16 +43,16 @@ h2 {
     border: 1px solid var(--rule);
 }
 
-.formula-box {
+.kousiki_box {
     background-color: var(--formula-bg);
 }
 
-.example-box {
+.reidai_box {
     background-color: var(--example-bg);
 }
 
 /* 疑似要素によるラベル装飾 */
-.formula-box::before {
+.kousiki_box::before {
     content: "基本ルール";
     position: absolute;
     top: -10px;
@@ -65,7 +65,7 @@ h2 {
     border-radius: 4px;
 }
 
-.example-box::before {
+.reidai_box::before {
     content: "例題・応用";
     position: absolute;
     top: -10px;

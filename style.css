@@ -6,6 +6,8 @@
     --accent: #9b1b4b;
     --formula-bg: #f0f4f8;
     --example-bg: #f9f4e8;
+    --rensyuu-bg: #faf291;
+    --play: skyblue;
 }
 
 body {
@@ -52,7 +54,7 @@ h2 {
 }
 
 .rensyu_box {
-    background-color: var(--example-bg);
+    background-color: var(--rensyuu-bg);
 }
 
 /* 疑似要素によるラベル装飾 */
@@ -87,7 +89,7 @@ h2 {
     position: absolute;
     top: -10px;
     left: 15px;
-    background: var(--accent);
+    background: var(--play);
     color: white;
     padding: 2px 10px;
     font-size: 0.8rem;

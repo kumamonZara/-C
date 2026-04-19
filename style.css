@@ -30,12 +30,14 @@ h1 {
     border-bottom: 3px solid var(--accent);
     padding-bottom: 10px;
     color: var(--accent);
+    font-family: "Hiragino Mincho Pro", "HiraMinProN-W3", serif;
 }
 
 h2 {
     border-left: 5px solid var(--ink);
     padding-left: 15px;
     margin-top: 40px;
+    font-family: "Hiragino Mincho Pro", "HiraMinProN-W3", serif;
 }
 
 /* 数式ボックスの共通設定 */
@@ -45,6 +47,7 @@ h2 {
     padding: 25px 20px 15px;
     border-radius: 8px;
     border: 1px solid var(--rule);
+    font-family: "Hiragino Mincho Pro", "HiraMinProN-W3", serif;
 }
 
 .kousiki_box {

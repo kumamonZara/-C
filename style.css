@@ -15,7 +15,7 @@
 body {
     background-color: white;
     color: var(--ink);
-    font-family: "Noto Sans JP", sans-serif;
+    font-family: "Hiragino Mincho Pro", "HiraMinProN-W3", serif;
     line-height: 1.6;
     margin: 0;
     padding: 20px;

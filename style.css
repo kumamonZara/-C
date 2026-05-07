@@ -41,7 +41,7 @@ h2 {
 }
 
 em {
-    color:red
+    color:red;
     }
 /* 数式ボックスの共通設定 */
 .reidai_box, .kousiki_box, .rensyu_box, .setumei_box, .ouyou_box {

@@ -10,6 +10,7 @@
     --play: #b9b9b9;
     --setumei-bg: rgba(0,0,175,0.3);
     --ouyou-bg: #fab288;
+    --ccol: red;
 }
 
 body {
@@ -41,7 +42,7 @@ h2 {
 }
 
 em {
-    color:red;
+    color:var(--ccol);
     }
 /* 数式ボックスの共通設定 */
 .reidai_box, .kousiki_box, .rensyu_box, .setumei_box, .ouyou_box {

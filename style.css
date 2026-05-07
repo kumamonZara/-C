@@ -40,6 +40,9 @@ h2 {
     font-family: "Hiragino Mincho Pro", "HiraMinProN-W3", serif;
 }
 
+em {
+    color:red
+    }
 /* 数式ボックスの共通設定 */
 .reidai_box, .kousiki_box, .rensyu_box, .setumei_box, .ouyou_box {
     position: relative;

@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>高校情報Ⅰ 完全攻略テキスト</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&family=Noto+Serif+JP:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ====== VARIABLES ====== */
+:root{
+  --ink:#0f1e3c; --ink2:#1a3255; --paper:#faf8f4; --warm:#f5f0e8;
+  --rule:#d4cbb8; --accent:#9b1b4b; --blue:#1a4f8a; --green:#145f3a;
+  --gold:#c9870c; --purple:#5c2d8e; --orange:#b94a00;
+  --proof-bg:#edf6fb; --proof-bd:#1e7abf;
+  --form-bg:#fef9e7; --form-bd:#d4890a;
+  --ex-bg:#f0fdf4; --ex-bd:#1a8a4a;
+  --pr-bg:#fdf3ff; --pr-bd:#7e22ce;
+  --tip-bg:#f0f9ff; --tip-bd:#0284c7;
+  --warn-bg:#fff1f2; --warn-bd:#be123c;
+  --exam-bg:#fff8f0; --exam-bd:#b94a00;
+  --serif:'Noto Serif JP',Georgia,serif;
+  --sans:'Noto Sans JP','Hiragino Kaku Gothic Pro',sans-serif;
+}
+
+/* ====== RESET ====== */
+*{box-sizing:border-box;margin:0;padding:0;}html,body{overflow-x:hidden;max-width:100%;}
+html{font-size:15px;}
+body{font-family:‘Noto Serif JP’,Georgia,serif;background:#faf8f4;color:#0f1e3c;line-height:1.9;}
+p{margin-bottom:11px;}
+strong{font-weight:700;}
+
+/* ====== PAGE / PRINT ====== */
+@page{size:A4;margin:18mm 16mm 18mm 16mm;}
+@media print{
+html{font-size:11px;}
+body{background:#fff;}
+nav,.no-print,.back-to-top{display:none!important;}
+.main-content{margin-left:0!important;}
+.chapter{page-break-before:always;padding:0 0 24px;}
+.chapter:first-of-type{page-break-before:avoid;}
+.print-cover{display:flex!important;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.toc-section{page-break-after:always;}
+.formula-box,.proof-box,.example-box,.exercise-block,.exam-card,.tip-box,.important-box{page-break-inside:avoid;break-inside:avoid;}
+.section{page-break-inside:auto;}
+h3,h4{page-break-after:avoid;}
+.answer-block{page-break-inside:avoid;break-inside:avoid;}
+table{page-break-inside:avoid;break-inside:avoid;}
+.two-col,.three-col{page-break-inside:avoid;}
+a{color:inherit;text-decoration:none;}
+.chapter-header{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.formula-box,.proof-box,.example-box,.exercise-block,.tip-box,.important-box{
+-webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+.formula-box::before,.proof-box::before,.example-box::before,
+.exercise-block::before,.tip-box::before,.important-box::before{
+-webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+.exam-hd{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+th{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+@media screen{.print-cover{display:none;}}
+
+/* ====== PRINT COVER ====== */
+.print-cover{
+background:linear-gradient(135deg,#0f1e3c 0%,#1a3255 55%,#1a4f8a 100%);
+color:#fff;min-height:100vh;flex-direction:column;align-items:center;
+justify-content:center;text-align:center;padding:80px 56px;
+}
+.print-cover h1{font-size:3.2rem;font-weight:300;letter-spacing:0.12em;margin-bottom:10px;}
+.print-cover h1 span{font-weight:700;color:#f0c040;}
+.print-cover .cv-sub{font-size:1rem;opacity:.65;letter-spacing:.3em;margin-bottom:44px;font-family:var(–sans);}
+.print-cover .cv-chs{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-bottom:44px;}
+.print-cover .cv-ch{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:5px 16px;border-radius:20px;font-family:var(–sans);font-size:13px;}
+.print-cover .cv-note{font-size:11.5px;opacity:.45;font-family:var(–sans);border-top:1px solid rgba(255,255,255,.12);padding-top:20px;letter-spacing:.1em;}
+
+/* ====== NAV TOGGLE BUTTON ====== */
+#nav-toggle-btn{
+position:fixed;top:13px;left:14px;z-index:400;
+background:#0f1e3c;color:#f0c040;
+border:1.5px solid rgba(240,192,64,.4);
+padding:7px 15px 7px 11px;border-radius:7px;cursor:pointer;
+font-family:var(–sans);
+font-size:12.5px;font-weight:700;letter-spacing:.04em;
+display:flex;align-items:center;gap:8px;
+box-shadow:0 2px 14px rgba(0,0,0,.4);transition:background .2s;
+user-select:none;
+}
+#nav-toggle-btn:hover{background:#1a3255;}
+#nav-toggle-btn .tgl-icon{font-size:17px;line-height:1;transition:transform .38s cubic-bezier(.4,0,.2,1);display:inline-block;}
+#nav-toggle-btn.open .tgl-icon{transform:rotate(90deg);}
+
+/* ====== NAV ====== */
+nav{
+position:fixed;top:0;left:0;width:100%;
+max-height:0;overflow:hidden;
+transition:max-height .45s cubic-bezier(.4,0,.2,1);
+background:#0f1e3c;color:#ccc;
+font-family:var(–sans);
+font-size:11.5px;z-index:350;
+box-shadow:0 6px 36px rgba(0,0,0,.5);
+}
+nav.nav-open{max-height:82vh;overflow-y:auto;}
+.nav-inner{
+padding:56px 24px 24px;
+display:flex;flex-wrap:wrap;align-items:flex-start;gap:0 28px;
+}
+.nav-col{flex:0 0 auto;min-width:158px;max-width:210px;margin-bottom:12px;}
+.nav-title{
+color:#fff;font-weight:700;font-size:13px;
+padding:0 0 9px;border-bottom:1px solid rgba(255,255,255,.12);
+margin-bottom:6px;letter-spacing:.06em;display:block;
+}
+nav a{display:block;color:#8ab;text-decoration:none;padding:3px 0 3px 8px;transition:all .18s;border-left:2px solid transparent;}
+nav a:hover{color:#fff;border-left-color:#f0c040;padding-left:14px;}
+.nav-ch{color:#f0c040;font-weight:700;margin-top:10px;margin-bottom:3px;font-size:11px;letter-spacing:.06em;}
+.nav-col .nav-ch:first-child{margin-top:0;}
+.nav-sub{font-size:10.5px;color:#678;padding-left:14px!important;}
+.nav-sub:hover{color:#acd;}
+#nav-overlay{
+display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,.38);z-index:200;
+}
+#nav-overlay.active{display:block;}
+
+/* ====== SYMBOL TOOLTIP ====== */
+.sym-tip{
+position:relative;display:inline;cursor:help;
+border-bottom:1px dashed rgba(26,79,138,.55);
+}
+.sym-tip::after{
+content:attr(data-tip);
+position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);
+background:#1a3255;color:#ddeeff;
+font-size:11px;font-family:var(–sans);
+font-weight:400;line-height:1.6;
+padding:5px 10px;border-radius:6px;white-space:nowrap;
+box-shadow:0 3px 14px rgba(0,0,0,.35);
+opacity:0;pointer-events:none;transition:opacity .18s;z-index:500;
+}
+.sym-tip::before{
+content:’’;position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);
+border:5px solid transparent;border-top-color:#1a3255;
+opacity:0;pointer-events:none;transition:opacity .18s;z-index:500;
+}
+.sym-tip:hover::after,.sym-tip:hover::before{opacity:1;}
+
+/* Symbol guide floating panel */
+#sym-guide-btn{
+position:fixed;bottom:80px;right:24px;z-index:150;
+background:#1a4f8a;color:#fff;border:none;
+width:44px;height:44px;border-radius:50%;cursor:pointer;
+font-size:15px;box-shadow:0 2px 12px rgba(0,0,0,.3);
+transition:transform .2s,background .2s;
+display:flex;align-items:center;justify-content:center;
+font-family:var(–sans);font-weight:700;
+}
+#sym-guide-btn:hover{background:#0f1e3c;transform:scale(1.1);}
+#sym-guide-panel{
+position:fixed;bottom:134px;right:24px;z-index:150;
+width:330px;max-height:430px;overflow-y:auto;
+background:#fff;border:1.5px solid #d4cbb8;border-radius:10px;
+box-shadow:0 8px 36px rgba(0,0,0,.18);
+font-family:var(–sans);
+font-size:12px;line-height:1.7;display:none;
+}
+#sym-guide-panel.open{display:block;}
+.sg-hd{
+background:#0f1e3c;color:#fff;padding:10px 16px;border-radius:8px 8px 0 0;
+font-weight:700;font-size:13px;letter-spacing:.04em;
+display:flex;align-items:center;justify-content:space-between;
+}
+.sg-hd button{background:none;border:none;color:#aaa;cursor:pointer;font-size:18px;line-height:1;padding:0;}
+.sg-hd button:hover{color:#fff;}
+.sg-body{padding:12px 14px;}
+.sg-sec{margin-bottom:14px;}
+.sg-sec-title{color:#1a4f8a;font-size:11px;font-weight:700;letter-spacing:.08em;
+border-bottom:1px solid #e0dbd0;padding-bottom:4px;margin-bottom:6px;}
+.sg-row{display:grid;grid-template-columns:54px 82px 1fr;gap:4px;align-items:baseline;padding:2px 0;}
+.sg-sym{font-size:13px;color:#0f1e3c;font-weight:700;}
+.sg-read{color:#9b1b4b;font-size:11px;}
+.sg-mean{color:#444;font-size:10.5px;}
+
+/* ====== LAYOUT ====== */
+.main-content{margin-left:0;width:100%;overflow-x:hidden;}
+@media(max-width:900px){.main-content{margin-left:0;width:100%;}}
+
+/* ====== HEADER ====== */
+.header-banner{
+background:linear-gradient(135deg,#0f1e3c 0%,#1a3255 50%,#16325e 100%);
+color:#fff;padding:40px 40px 34px;position:relative;overflow:hidden;
+}
+.header-banner::before{content:’’;position:absolute;top:-50px;right:-50px;width:280px;height:280px;border:1px solid rgba(255,255,255,.04);border-radius:50%;}
+.header-banner h1{font-size:2.5em;font-weight:300;letter-spacing:.08em;margin-bottom:8px;}
+.header-banner h1 span{font-weight:700;color:#f0c040;}
+.header-banner p{color:rgba(255,255,255,.55);font-size:13px;font-family:var(–sans);}
+.hd-badges{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px;}
+.hd-badge{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.75);padding:3px 11px;border-radius:16px;font-size:12px;font-family:var(–sans);}
+
+/* ====== TOC ====== */
+.toc-section{padding:36px 40px;border-bottom:2px solid #d4cbb8;}
+.toc-section h2{font-size:1.6em;margin-bottom:24px;border-bottom:2px solid #0f1e3c;padding-bottom:9px;}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.toc-card{border:1.5px solid #d4cbb8;border-radius:8px;padding:16px;text-decoration:none;color:inherit;display:block;transition:all .2s;}
+.toc-card:hover{border-color:#1a4f8a;transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.08);}
+.toc-num{font-size:10.5px;color:#9b1b4b;font-weight:700;letter-spacing:.1em;font-family:var(–sans);}
+.toc-title{font-size:1.15em;font-weight:700;margin:4px 0 8px;}
+.toc-topics{font-size:11.5px;color:#666;font-family:var(–sans);line-height:1.7;}
+
+/* ====== CHAPTER ====== */
+.chapter{padding:0 40px 40px;border-bottom:2px solid #d4cbb8;}
+.chapter-header{padding:42px 0 24px;border-bottom:3px solid #0f1e3c;margin-bottom:28px;}
+.ch-num{font-family:var(–sans);font-size:11px;font-weight:600;color:#9b1b4b;letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px;}
+.chapter-header h2{font-size:2em;font-weight:600;letter-spacing:.03em;line-height:1.3;}
+.chapter-header p{margin-top:9px;color:#555;font-size:13.5px;font-family:var(–sans);max-width:640px;}
+
+/* ====== SECTIONS ====== */
+.section{margin-bottom:38px;}
+h3{font-size:1.2em;font-weight:700;color:#1a4f8a;border-left:4px solid #1a4f8a;padding-left:12px;margin:30px 0 14px;}
+h4{font-size:1.02em;font-weight:700;color:#0f1e3c;margin:18px 0 9px;padding-bottom:3px;border-bottom:1px dashed #d4cbb8;}
+.section-sep{border:none;border-top:1px dashed #d4cbb8;margin:22px 0;}
+
+/* ====== BOX BASE ====== */
+.formula-box,.proof-box,.example-box,.exercise-block,.tip-box,.exam-card,.important-box{
+border-radius:7px;padding:18px 22px;margin:16px 0;position:relative;
+}
+/* FORMULA */
+.formula-box{background:#fef9e7;border:1.5px solid #d4890a;border-left:5px solid #d4890a;}
+.formula-box::before{content:‘まとめ’;position:absolute;top:-10px;left:14px;background:#d4890a;color:#fff;font-family:var(–sans);font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:.08em;}
+.formula-box.theorem::before{content:‘定義’;background:#1a4f8a;}
+.formula-box.definition::before{content:‘用語’;background:#9b1b4b;}
+.formula-box.important::before{content:‘重要’;background:#b91c1c;}
+/* PROOF */
+.proof-box{background:#edf6fb;border:1.5px solid #1e7abf;border-left:5px solid #1e7abf;}
+.proof-box::before{content:‘解説’;position:absolute;top:-10px;left:14px;background:#1e7abf;color:#fff;font-family:var(–sans);font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;}
+/* EXAMPLE */
+.example-box{background:#f0fdf4;border:1.5px solid #1a8a4a;border-left:5px solid #1a8a4a;}
+.example-box::before{content:‘例題’;position:absolute;top:-10px;left:14px;background:#1a8a4a;color:#fff;font-family:var(–sans);font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;}
+/* EXERCISE */
+.exercise-block{background:#fdf3ff;border:1.5px solid #7e22ce;border-left:5px solid #7e22ce;}
+.exercise-block::before{content:‘練習’;position:absolute;top:-10px;left:14px;background:#7e22ce;color:#fff;font-family:var(–sans);font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;}
+/* TIP */
+.tip-box{background:#f0f9ff;border:1.5px solid #0284c7;border-left:5px solid #0284c7;}
+.tip-box::before{content:‘POINT’;position:absolute;top:-10px;left:14px;background:#0284c7;color:#fff;font-family:var(–sans);font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:.06em;}
+/* IMPORTANT */
+.important-box{background:#fff1f2;border:1.5px solid #be123c;border-left:5px solid #be123c;}
+.important-box::before{content:‘注意’;position:absolute;top:-10px;left:14px;background:#be123c;color:#fff;font-family:var(–sans);font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;}
+/* EXAM CARD */
+.exam-card{border:2px solid #1a3255;border-radius:8px;overflow:hidden;margin:18px 0;background:#fff;}
+.exam-hd{background:linear-gradient(90deg,#0f1e3c,#1a3255);color:#fff;padding:10px 17px;display:flex;justify-content:space-between;align-items:center;font-family:var(–sans);font-size:13px;font-weight:600;}
+.exam-body{padding:18px 20px;}
+.etag{font-size:10.5px;padding:2px 8px;border-radius:10px;font-weight:700;}
+.tag-net{background:#74b9ff;color:#0f1e3c;}
+.tag-sec{background:#fd79a8;color:#fff;}
+.tag-dat{background:#a8e6cf;color:#145f3a;}
+.tag-alg{background:#f4a261;color:#fff;}
+.tag-exp{background:#f0c040;color:#1a1a2e;}
+.tag-law{background:#a29bfe;color:#fff;}
+
+/* ====== ANSWER BLOCK ====== */
+.answer-block{background:#fefefe;border:1px dashed #aaa;border-radius:6px;padding:13px 17px;margin-top:12px;}
+.answer-block::before{content:‘解答・解説’;font-family:var(–sans);font-size:10px;font-weight:700;color:#777;display:block;margin-bottom:5px;letter-spacing:.1em;}
+
+/* ====== TABLE ====== */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;margin:14px 0;}
+table{border-collapse:collapse;width:100%;font-size:13px;border:1px solid #b0a090;font-family:var(–sans);min-width:auto;}
+th{background:#0f1e3c;color:#fff;padding:8px 12px;text-align:center;font-weight:500;letter-spacing:.04em;}
+td{padding:7px 12px;border:1px solid #b0a090;text-align:center;vertical-align:middle;}
+tr:nth-child(even) td{background:#f5f0e8;}
+
+/* ====== GRID ====== */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:12px 0;}
+@media(max-width:700px){.two-col,.three-col{grid-template-columns:1fr;}}
+.sum-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:14px 0;}
+.sum-card{background:#fff;border:1.5px solid #d4cbb8;border-radius:8px;padding:14px 16px;}
+.sum-card h4{font-size:13px;margin-bottom:7px;border:none;padding:0;font-family:var(–sans);}
+.sum-card p{font-size:12.5px;color:#444;margin:0;line-height:1.7;}
+
+/* ====== CODE BLOCK ====== */
+.code-block{background:#1a1a2e;color:#e0e0ff;font-family:‘Courier New’,Courier,monospace;font-size:13px;line-height:1.8;padding:16px 20px;border-radius:7px;margin:14px 0;overflow-x:auto;border:1px solid #2a2a4e;}
+.code-block .kw{color:#f0c040;}
+.code-block .cm{color:#678;font-style:italic;}
+.code-block .st{color:#a8e6cf;}
+.code-block .nm{color:#74b9ff;}
+.code-block .fn{color:#fd79a8;}
+
+/* Flowchart styles */
+.flowchart{font-family:var(–sans);font-size:12.5px;text-align:center;margin:16px 0;}
+.fc-box{display:inline-block;border:2px solid #1a4f8a;background:#edf6fb;padding:7px 22px;border-radius:4px;margin:3px 0;}
+.fc-diamond{display:inline-block;border:2px solid #9b1b4b;background:#fdf3ff;padding:7px 22px;transform:skewX(-10deg);margin:3px 0;}
+.fc-diamond span{display:inline-block;transform:skewX(10deg);}
+.fc-oval{display:inline-block;border:2px solid #145f3a;background:#f0fdf4;padding:7px 24px;border-radius:30px;margin:3px 0;}
+.fc-arr{color:#1a4f8a;font-size:18px;line-height:1.2;display:block;}
+
+/* ====== MISC ====== */
+.hl{background:#fef3d0;padding:1px 3px;border-radius:2px;}
+.red{color:#b91c1c;font-weight:700;}
+.blue{color:#1a4f8a;font-weight:700;}
+.green{color:#145f3a;font-weight:700;}
+.note{background:#f8f9fa;border-left:4px solid #adb5bd;padding:10px 15px;margin:12px 0;font-size:13px;color:#555;font-family:var(–sans);border-radius:0 5px 5px 0;}
+.lv{font-size:10px;font-family:var(–sans);font-weight:700;letter-spacing:.06em;padding:2px 7px;border-radius:9px;margin-left:7px;vertical-align:middle;}
+.lv-b{background:#d1fae5;color:#065f46;}
+.lv-m{background:#fef9c3;color:#713f12;}
+.lv-a{background:#fce7f3;color:#9d174d;}
+.lv-e{background:#ede9fe;color:#4c1d95;}
+ul.bullet,ol.num{padding-left:22px;margin:9px 0;}
+ul.bullet li,ol.num li{margin-bottom:5px;line-height:1.85;}
+ol.steps{padding-left:26px;margin:9px 0;}
+ol.steps li{margin-bottom:6px;line-height:1.85;font-family:var(–sans);font-size:13.5px;}
+.back-to-top{position:fixed;bottom:26px;right:26px;background:#0f1e3c;color:#fff;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:17px;box-shadow:0 2px 12px rgba(0,0,0,.3);transition:transform .2s;z-index:99;}
+.back-to-top:hover{transform:translateY(-3px);}
+
+/* binary/bit display */
+.bit-row{display:flex;gap:2px;justify-content:center;margin:8px 0;font-family:monospace;}
+.bit-cell{width:36px;height:36px;border:1.5px solid #1a4f8a;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;border-radius:4px;background:#edf6fb;}
+.bit-cell.one{background:#0f1e3c;color:#f0c040;}
+.bit-pos{width:36px;text-align:center;font-size:10px;color:#888;font-family:var(–sans);}
+
+/* Memorize card */
+.memo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:14px 0;}
+.memo-card{border:1.5px solid #d4cbb8;border-radius:8px;padding:12px 14px;background:#fff;}
+.memo-q{font-family:var(–sans);font-size:12px;color:#555;margin-bottom:4px;}
+.memo-a{font-size:14px;font-weight:700;color:#0f1e3c;}
+.memo-card:hover .memo-a{color:#9b1b4b;}
+
+@media(max-width:600px){
+.chapter{padding:0 18px 28px;}
+.toc-section,.header-banner{padding:24px 18px;}
+h3{font-size:1.1em;}
+.formula-box,.proof-box,.example-box,.exercise-block,.tip-box,.important-box{padding:14px 14px;}
+}
+</style>
+
+</head>
+<body>
+
+<!-- PRINT COVER -->
+
+<div class="print-cover">
+  <h1>高校 情報Ⅰ <span>完全攻略テキスト</span></h1>
+  <div class="cv-sub">HIGH SCHOOL INFORMATICS Ⅰ · COMPLETE STUDY GUIDE</div>
+  <div class="cv-chs">
+    <span class="cv-ch">第1章 情報社会</span>
+    <span class="cv-ch">第2章 デジタル表現</span>
+    <span class="cv-ch">第3章 コンピュータの仕組み</span>
+    <span class="cv-ch">第4章 アルゴリズムとプログラミング</span>
+    <span class="cv-ch">第5章 ネットワーク</span>
+    <span class="cv-ch">第6章 データの活用</span>
+  </div>
+  <div class="cv-note">基礎知識 · 例題 · 練習問題 · 入試対策 ― 基礎から共通テスト・大学入試レベルまで完全網羅</div>
+</div>
+
+<!-- NAV TOGGLE -->
+
+<button id="nav-toggle-btn" class="no-print" aria-label="目次を開く/閉じる">
+  <span class="tgl-icon">▶</span> 目次
+</button>
+<div id="nav-overlay" class="no-print"></div>
+
+<!-- NAVIGATION -->
+
+<nav class="no-print" id="top">
+<div class="nav-inner">
+
+  <div class="nav-col">
+    <span class="nav-title">高校情報Ⅰ 完全攻略</span>
+    <a href="#toc" style="color:#f0c040;font-weight:600;">▸ 目次ページへ</a>
+    <div class="nav-ch" style="margin-top:14px;">Ch.1 情報社会</div>
+    <a class="nav-sub" href="#s1-1">情報の特性・デジタル化</a>
+    <a class="nav-sub" href="#s1-2">知的財産権・個人情報</a>
+    <a class="nav-sub" href="#s1-3">情報セキュリティ</a>
+    <a class="nav-sub" href="#s1-4">問題解決のプロセス</a>
+  </div>
+
+  <div class="nav-col">
+    <div class="nav-ch" style="margin-top:0;">Ch.2 デジタル表現</div>
+    <a class="nav-sub" href="#s2-1">2進数・16進数・基数変換</a>
+    <a class="nav-sub" href="#s2-2">文字コード（ASCII・Unicode）</a>
+    <a class="nav-sub" href="#s2-3">画像のデジタル化</a>
+    <a class="nav-sub" href="#s2-4">音声のデジタル化</a>
+    <a class="nav-sub" href="#s2-5">データ量の計算</a>
+    <div class="nav-ch">Ch.3 コンピュータ</div>
+    <a class="nav-sub" href="#s3-1">ハードウェア構成</a>
+    <a class="nav-sub" href="#s3-2">論理回路と論理演算</a>
+    <a class="nav-sub" href="#s3-3">ソフトウェアとOS</a>
+  </div>
+
+  <div class="nav-col">
+    <div class="nav-ch" style="margin-top:0;">Ch.4 アルゴリズム</div>
+    <a class="nav-sub" href="#s4-1">アルゴリズムと流れ図</a>
+    <a class="nav-sub" href="#s4-2">変数・条件分岐・繰り返し</a>
+    <a class="nav-sub" href="#s4-3">配列と関数</a>
+    <a class="nav-sub" href="#s4-4">ソートアルゴリズム</a>
+    <a class="nav-sub" href="#s4-5">探索アルゴリズム</a>
+    <div class="nav-ch">Ch.5 ネットワーク</div>
+    <a class="nav-sub" href="#s5-1">ネットワークの仕組み</a>
+    <a class="nav-sub" href="#s5-2">IPアドレスとDNS</a>
+    <a class="nav-sub" href="#s5-3">セキュリティ技術</a>
+  </div>
+
+  <div class="nav-col">
+    <div class="nav-ch" style="margin-top:0;">Ch.6 データの活用</div>
+    <a class="nav-sub" href="#s6-1">データの収集・整理</a>
+    <a class="nav-sub" href="#s6-2">代表値・分散・標準偏差</a>
+    <a class="nav-sub" href="#s6-3">相関と回帰</a>
+    <a class="nav-sub" href="#s6-4">モデル化とシミュレーション</a>
+    <div class="nav-ch">付録</div>
+    <a class="nav-sub" href="#ch0">暗記カード・重要語句一覧</a>
+  </div>
+
+</div>
+</nav>
+
+<div class="main-content">
+
+<!-- HEADER -->
+
+<div class="header-banner no-print">
+  <h1>高校 情報Ⅰ <span>完全攻略テキスト</span></h1>
+  <p>基礎知識 · 例題 · 練習問題 · 入試対策 ― 基礎から共通テスト・大学入試レベルまで完全網羅</p>
+  <div class="hd-badges">
+    <span class="hd-badge">情報社会</span>
+    <span class="hd-badge">デジタル表現</span>
+    <span class="hd-badge">コンピュータの仕組み</span>
+    <span class="hd-badge">アルゴリズムとプログラミング</span>
+    <span class="hd-badge">ネットワーク</span>
+    <span class="hd-badge">データの活用</span>
+  </div>
+</div>
+
+<!-- TOC -->
+
+<div class="toc-section no-print" id="toc">
+  <h2>目次</h2>
+  <div class="toc-grid">
+    <a class="toc-card" href="#ch1"><div class="toc-num">CHAPTER 01</div><div class="toc-title">情報社会と倫理</div><div class="toc-topics">情報の特性 · 知的財産権（著作権・産業財産権）· 個人情報保護法 · 情報セキュリティの3要素 · 問題解決プロセス</div></a>
+    <a class="toc-card" href="#ch2"><div class="toc-num">CHAPTER 02</div><div class="toc-title">デジタル表現</div><div class="toc-topics">2進数・16進数変換 · 文字コード（ASCII・JIS・Unicode）· 画像（解像度・色深度）· 音声（標本化・量子化・符号化）· データ量計算</div></a>
+    <a class="toc-card" href="#ch3"><div class="toc-num">CHAPTER 03</div><div class="toc-title">コンピュータの仕組み</div><div class="toc-topics">CPU・メモリ・ストレージ · 論理回路（AND・OR・NOT・NAND・XOR）· 真理値表 · OS・アプリ · プロセスと割り込み</div></a>
+    <a class="toc-card" href="#ch4"><div class="toc-num">CHAPTER 04</div><div class="toc-title">アルゴリズムとプログラミング</div><div class="toc-topics">フローチャート · 変数・条件分岐・繰り返し · 配列 · バブルソート・選択ソート · 線形探索・二分探索</div></a>
+    <a class="toc-card" href="#ch5"><div class="toc-num">CHAPTER 05</div><div class="toc-title">ネットワークとセキュリティ</div><div class="toc-topics">LAN/WAN · TCP/IP · IPアドレス（クラス・CIDR）· サブネットマスク · DNS · HTTP/HTTPS · 暗号化・認証</div></a>
+    <a class="toc-card" href="#ch6"><div class="toc-num">CHAPTER 06</div><div class="toc-title">データの活用</div><div class="toc-topics">データの収集・クレンジング · 平均・分散・標準偏差 · 相関係数 · 散布図・回帰直線 · モデル化とシミュレーション</div></a>
+    <a class="toc-card" href="#ch0"><div class="toc-num">付録</div><div class="toc-title">暗記カード・重要語句</div><div class="toc-topics">分野別キーワード一覧 · 数値の暗記ポイント · 入試頻出テーマ・解法チェックリスト</div></a>
+  </div>
+</div>
+
+<!-- ============================================================
+     第１章　情報社会と倫理
+============================================================ -->
+
+<div class="chapter" id="ch1">
+<div class="chapter-header">
+  <div class="ch-num">CHAPTER 01</div>
+  <h2>情報社会と倫理</h2>
+  <p>情報の特性を理解し，著作権・個人情報保護・セキュリティの法制度を体系的に習得する。問題解決のプロセスも共通テストで頻出。</p>
+</div>
+
+<div class="section" id="s1-1">
+<h3>1.1 情報の特性・デジタル化</h3>
+
+<div class="formula-box definition">
+<strong>情報の3大特性</strong>
+<div class="three-col" style="margin-top:12px;">
+  <div class="sum-card"><h4>① 複製が容易</h4><p>デジタルデータはコピーしても品質が劣化しない。際限なく複製・配布できる。</p></div>
+  <div class="sum-card"><h4>② 伝達が容易</h4><p>ネットワークを通じて，瞬時に世界中へ同時配信できる。</p></div>
+  <div class="sum-card"><h4>③ 消えにくい</h4><p>一度ネット上に出た情報は完全削除が困難（「デジタルタトゥー」）。</p></div>
+</div>
+</div>
+
+<div class="formula-box theorem">
+<strong>アナログとデジタルの比較</strong>
+<div class="table-wrap"><table>
+  <tr><th>項目</th><th>アナログ</th><th>デジタル</th></tr>
+  <tr><td>データ形式</td><td>連続した値（波形）</td><td>離散的な値（0と1）</td></tr>
+  <tr><td>コピー時の品質</td><td>劣化する</td><td>劣化しない</td></tr>
+  <tr><td>ノイズへの強さ</td><td>弱い（混入する）</td><td>強い（復元可能）</td></tr>
+  <tr><td>例</td><td>LP レコード・VHS テープ</td><td>CD・DVD・MP3・JPEG</td></tr>
+</table></div>
+</div>
+
+<div class="tip-box">
+<strong>入試 POINT：</strong>「デジタル化のメリット」を問う問題では，<span class="hl">ノイズに強い・品質が落ちない・加工・検索・圧縮が容易</span>の3点を押さえる。「デメリット」は<span class="hl">著作権侵害しやすい・プライバシー漏洩リスク</span>。
+</div>
+</div><!-- /s1-1 -->
+
+<div class="section" id="s1-2">
+<h3>1.2 知的財産権・個人情報保護</h3>
+
+<div class="formula-box theorem">
+<strong>知的財産権の体系</strong>
+<div class="two-col">
+  <div>
+    <h4>著作権（Copyright）</h4>
+    <ul class="bullet">
+      <li>創作と同時に自動発生（登録不要）</li>
+      <li>保護期間：著作者の<span class="hl">死後70年</span>（法人は公表後70年）</li>
+      <li>対象：文章・音楽・プログラム・データベースなど</li>
+      <li>著作者人格権（氏名表示権・同一性保持権・公表権）は<strong>譲渡不可</strong></li>
+    </ul>
+  </div>
+  <div>
+    <h4>産業財産権</h4>
+    <ul class="bullet">
+      <li><span class="blue">特許権</span>：発明（技術的アイデア）20年</li>
+      <li><span class="blue">実用新案権</span>：考案（形状・構造）10年</li>
+      <li><span class="blue">意匠権</span>：デザイン・外観 25年</li>
+      <li><span class="blue">商標権</span>：ブランドマーク 10年（更新可能）</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<div class="proof-box">
+<strong>著作権が及ばない行為（著作権法で認められた例外）</strong>
+<ul class="bullet">
+  <li><strong>私的使用のための複製</strong>（家庭内・個人的利用に限る）</li>
+  <li><strong>引用</strong>：自分の著作物が主体で，引用部分が従，出典明示が条件</li>
+  <li><strong>教育機関での利用</strong>（授業目的・必要最小限の複製）</li>
+  <li><strong>図書館等での複製</strong>（利用者のための1部に限る）</li>
+</ul>
+<div class="important-box" style="margin-top:10px;">
+<strong>注意：</strong>ネット上の画像・音楽を「無断で」Webサイトに貼る行為は，たとえ個人サイトでも著作権侵害になる。
+</div>
+</div>
+
+<div class="formula-box definition">
+<strong>個人情報保護法（2022年改正）の重要ポイント</strong>
+<ul class="bullet">
+  <li><strong>個人情報</strong>：特定の個人を識別できる情報（氏名・生年月日・顔画像など）</li>
+  <li><strong>個人識別符号</strong>：マイナンバー・旅券番号・指紋データなど（単体で個人情報）</li>
+  <li><strong>要配慮個人情報</strong>：人種・信条・病歴・犯罪歴など（取得に<strong>本人の同意必須</strong>）</li>
+  <li><strong>利用目的の特定・通知</strong>が義務。目的外利用は原則禁止</li>
+  <li><strong>漏洩時の報告義務</strong>：個人情報保護委員会への報告・本人への通知</li>
+</ul>
+</div>
+
+<div class="example-box">
+<strong>例題 1.1</strong> <span class="lv lv-b">基礎</span>　次のうち個人情報に該当するものをすべて選べ。<br>
+ア：氏名のみ　　イ：メールアドレスのみ　　ウ：氏名と生年月日の組み合わせ　　エ：会社の電話番号
+<div class="answer-block">
+<strong>ア・ウ</strong>が個人情報に該当する（特定の個人を識別できる）。<br>
+イ：メールアドレス<em>のみ</em>では，それが個人に紐づくかは状況次第だが，多くの場合は個人情報。エ：会社の電話番号は「個人」の識別に使えないため個人情報ではない（法人情報）。<br>
+<span class="note">実際の試験では「特定の個人を識別できるか」が判断基準。他の情報と照合して識別できれば個人情報に含まれる。</span>
+</div>
+</div>
+</div><!-- /s1-2 -->
+
+<div class="section" id="s1-3">
+<h3>1.3 情報セキュリティ</h3>
+
+<div class="formula-box important">
+<strong>情報セキュリティの3要素（CIA）</strong>
+<div class="three-col" style="margin-top:10px;">
+  <div class="sum-card"><h4>機密性 Confidentiality</h4><p>許可された者だけが情報にアクセスできる状態を維持する。</p></div>
+  <div class="sum-card"><h4>完全性 Integrity</h4><p>情報が正確・完全であり，改ざんされていない状態を保証する。</p></div>
+  <div class="sum-card"><h4>可用性 Availability</h4><p>必要なときに必要な情報やシステムを利用できる状態を維持する。</p></div>
+</div>
+</div>
+
+<div class="formula-box theorem">
+<strong>主な脅威と対策</strong>
+<div class="table-wrap"><table>
+  <tr><th>脅威</th><th>内容</th><th>主な対策</th></tr>
+  <tr><td><strong>マルウェア</strong></td><td>ウイルス・ワーム・トロイの木馬・ランサムウェア</td><td>ウイルス対策ソフト，OS更新</td></tr>
+  <tr><td><strong>フィッシング</strong></td><td>偽サイトや偽メールで認証情報を詐取</td><td>URLの確認，多要素認証</td></tr>
+  <tr><td><strong>DoS/DDoS攻撃</strong></td><td>大量のリクエストでサービス停止</td><td>ファイアウォール，WAF</td></tr>
+  <tr><td><strong>SQLインジェクション</strong></td><td>不正SQL文を送り込みDBを操作</td><td>入力値のサニタイズ，プリペアドステートメント</td></tr>
+  <tr><td><strong>クロスサイトスクリプティング（XSS）</strong></td><td>悪意あるスクリプトを他ユーザに実行させる</td><td>エスケープ処理，CSP設定</td></tr>
+  <tr><td><strong>不正アクセス</strong></td><td>認証を突破してシステムに侵入</td><td>強固なパスワード，2要素認証，アクセスログ監視</td></tr>
+</table></div>
+</div>
+
+<div class="tip-box">
+<strong>POINT：暗号化の種類</strong><br>
+<span class="hl">共通鍵暗号</span>（対称鍵）：送受信者が同じ鍵を使用。高速だが<strong>鍵配送問題</strong>がある。例：AES<br>
+<span class="hl">公開鍵暗号</span>（非対称鍵）：公開鍵で暗号化→秘密鍵で復号。鍵配送問題を解決。例：RSA<br>
+<span class="hl">ハイブリッド暗号</span>：公開鍵暗号で共通鍵を安全に送り，本文は共通鍵で暗号化（→ TLS/HTTPS で利用）
+</div>
+
+<div class="example-box">
+<strong>例題 1.2</strong> <span class="lv lv-m">標準</span>　デジタル署名のしくみを説明し，なぜ「なりすまし」と「改ざん」の両方を防げるか述べよ。
+<div class="answer-block">
+<ol class="num">
+  <li>送信者はメッセージのハッシュ値を計算し，自分の<strong>秘密鍵</strong>で暗号化したものを「デジタル署名」として添付する。</li>
+  <li>受信者は送信者の<strong>公開鍵</strong>で署名を復号してハッシュ値Aを得る。</li>
+  <li>受信したメッセージを同じハッシュ関数で処理してハッシュ値Bを得る。</li>
+  <li>A＝B なら，署名の正当性と内容の完全性が両方確認できる。</li>
+</ol>
+<strong>秘密鍵は本人しか持たない</strong>ので署名を偽造できない（→なりすまし防止）。ハッシュ値は内容が1ビットでも変わると全く異なる値になるため改ざんを検知できる（→改ざん防止）。
+</div>
+</div>
+
+<div class="exercise-block">
+<strong>練習 1.1</strong>　以下の空欄を埋めよ。<br>
+(1) 情報セキュリティの3要素は機密性・（　　）・（　　）である。<br>
+(2) 一方向変換で，同じ入力から常に同じ値を出力し，逆算が困難な関数を（　　）関数という。<br>
+(3) HTTPS 通信で使われるプロトコルは（　　）/TLS である。
+<div class="answer-block">
+(1) <strong>完全性・可用性</strong>　　(2) <strong>ハッシュ（Hash）</strong>　　(3) <strong>SSL</strong>
+</div>
+</div>
+
+<div class="section" id="s1-4">
+<h3>1.4 問題解決のプロセス</h3>
+<div class="formula-box theorem">
+<strong>問題解決の一般的手順</strong>
+<ol class="steps">
+  <li><strong>問題の発見・定義</strong>：「あるべき姿」と「現状」のギャップを明確にする</li>
+  <li><strong>情報収集・分析</strong>：関連データや文献を集め，原因を分析する</li>
+  <li><strong>解決策の立案</strong>：複数の案を比較検討する</li>
+  <li><strong>実施・評価</strong>：解決策を実行し，効果を検証する（PDCAサイクル）</li>
+  <li><strong>フィードバック</strong>：問題が残ればプロセスを繰り返す</li>
+</ol>
+</div>
+</div>
+</div><!-- /ch1 -->
+
+<!-- ============================================================
+     第２章　デジタル表現
+============================================================ -->
+
+<div class="chapter" id="ch2">
+<div class="chapter-header">
+  <div class="ch-num">CHAPTER 02</div>
+  <h2>デジタル表現</h2>
+  <p>2進数・16進数変換から，文字・画像・音声のデジタル化まで。計算問題は確実に解けるよう仕組みから理解する。</p>
+</div>
+
+<div class="section" id="s2-1">
+<h3>2.1 2進数・16進数・基数変換</h3>
+
+<div class="formula-box theorem">
+<strong>基数（底）の考え方</strong><br>
+基数 $n$ の数値は，各桁を $n$ の冪乗の重みとして表す。
+<div class="two-col" style="margin-top:10px;">
+  <div class="sum-card">
+    <h4>10進数 → 2進数</h4>
+    <p>商が0になるまで2で割り続け，<strong>余りを下から読む</strong>。<br>
+    例：13 → 13÷2=6余<span class="red">1</span>，6÷2=3余<span class="red">0</span>，3÷2=1余<span class="red">1</span>，1÷2=0余<span class="red">1</span> → <strong>(1101)₂</strong></p>
+  </div>
+  <div class="sum-card">
+    <h4>2進数 → 10進数</h4>
+    <p>各桁に 2ⁿ を掛けて合計する。<br>
+    例：(1101)₂ = 1×8 + 1×4 + 0×2 + 1×1 = <strong>13</strong></p>
+  </div>
+</div>
+</div>
+
+<div class="proof-box">
+<strong>16進数（HEX）変換：2進数4ビットと1桁が対応</strong>
+<div class="table-wrap"><table>
+  <tr><th>10進</th><th>2進（4bit）</th><th>16進</th><th>10進</th><th>2進（4bit）</th><th>16進</th></tr>
+  <tr><td>0</td><td>0000</td><td>0</td><td>8</td><td>1000</td><td>8</td></tr>
+  <tr><td>1</td><td>0001</td><td>1</td><td>9</td><td>1001</td><td>9</td></tr>
+  <tr><td>2</td><td>0010</td><td>2</td><td>10</td><td>1010</td><td>A</td></tr>
+  <tr><td>3</td><td>0011</td><td>3</td><td>11</td><td>1011</td><td>B</td></tr>
+  <tr><td>4</td><td>0100</td><td>4</td><td>12</td><td>1100</td><td>C</td></tr>
+  <tr><td>5</td><td>0101</td><td>5</td><td>13</td><td>1101</td><td>D</td></tr>
+  <tr><td>6</td><td>0110</td><td>6</td><td>14</td><td>1110</td><td>E</td></tr>
+  <tr><td>7</td><td>0111</td><td>7</td><td>15</td><td>1111</td><td>F</td></tr>
+</table></div>
+<p style="margin-top:8px;font-family:var(--sans);font-size:13px;">変換例：(2F)₁₆ = 0010 1111₂ = 2×16+15 = <strong>47</strong>₁₀</p>
+</div>
+
+<div class="formula-box important">
+<strong>ビット数と表現できる数の範囲（暗記必須）</strong>
+<div class="table-wrap"><table>
+  <tr><th>ビット数</th><th>パターン数（2ⁿ）</th><th>符号なし最大値</th><th>覚え方</th></tr>
+  <tr><td>4 bit</td><td>16</td><td>15</td><td>1ニブル</td></tr>
+  <tr><td>8 bit（1 byte）</td><td>256</td><td>255</td><td>0〜255</td></tr>
+  <tr><td>16 bit</td><td>65,536</td><td>65,535</td><td>約6.5万</td></tr>
+  <tr><td>32 bit</td><td>約43億</td><td>4,294,967,295</td><td>約43億</td></tr>
+  <tr><td>64 bit</td><td>約1.8×10¹⁹</td><td>—</td><td>現代PCの標準</td></tr>
+</table></div>
+</div>
+
+<div class="example-box">
+<strong>例題 2.1</strong> <span class="lv lv-b">基礎</span><br>
+(1) (10110101)₂ を 10進数に変換せよ。<br>
+(2) 185 を 16進数に変換せよ。
+<div class="answer-block">
+(1) 1×128 + 0×64 + 1×32 + 1×16 + 0×8 + 1×4 + 0×2 + 1×1 = 128+32+16+4+1 = <strong>181</strong><br>
+(2) 185÷16 = 11 余 9 → 11 は B，9 は 9 → <strong>(B9)₁₆</strong><br>（確認：11×16+9 = 176+9 = 185 ✓）
+</div>
+</div>
+
+<div class="exercise-block">
+<strong>練習 2.1</strong><br>
+(1) (A3)₁₆ を 10 進数に変換せよ。<br>
+(2) 200 を 2 進数で表せ。<br>
+(3) (11001100)₂ + (00110011)₂ を計算し，10進数でも答えよ。
+<div class="answer-block">
+(1) 10×16+3 = <strong>163</strong><br>
+(2) 128+64+8 = 200 → <strong>(11001000)₂</strong><br>
+(3) 11001100 + 00110011 = 11111111₂ = 255₁₀
+</div>
+</div>
+</div><!-- /s2-1 -->
+
+<div class="section" id="s2-2">
+<h3>2.2 文字コード</h3>
+
+<div class="formula-box theorem">
+<strong>主な文字コード規格</strong>
+<div class="table-wrap"><table>
+  <tr><th>規格名</th><th>ビット数/バイト数</th><th>文字種</th><th>特徴</th></tr>
+  <tr><td><strong>ASCII</strong></td><td>7ビット（128文字）</td><td>英数字・記号</td><td>最も基本的な規格</td></tr>
+  <tr><td><strong>JIS（ISO-2022-JP）</strong></td><td>2バイト</td><td>日本語（漢字含む）</td><td>メール等で使用</td></tr>
+  <tr><td><strong>EUC-JP</strong></td><td>1〜3バイト</td><td>日本語</td><td>Unix系サーバで普及</td></tr>
+  <tr><td><strong>Shift-JIS</strong></td><td>1〜2バイト</td><td>日本語</td><td>Windows環境で普及</td></tr>
+  <tr><td><strong>Unicode（UCS）</strong></td><td>可変（1〜4バイト）</td><td>世界中の文字</td><td>国際標準。UTF-8が主流</td></tr>
+  <tr><td><strong>UTF-8</strong></td><td>1〜4バイト</td><td>Unicodeの実装</td><td>Webの国際標準</td></tr>
+</table></div>
+</div>
+
+<div class="tip-box">
+<strong>POINT：</strong>文字化けは，<span class="hl">送信時と受信時で異なる文字コードが使用された</span>ときに発生する。Webページでは <code>&lt;meta charset="UTF-8"&gt;</code> のように明示的に指定する。
+</div>
+
+<div class="proof-box">
+<strong>ASCII コードの例（16進数と文字の対応）</strong>
+<div class="table-wrap"><table>
+  <tr><th>16進</th><th>文字</th><th>16進</th><th>文字</th><th>16進</th><th>文字</th></tr>
+  <tr><td>30〜39</td><td>0〜9</td><td>41〜5A</td><td>A〜Z（大文字）</td><td>61〜7A</td><td>a〜z（小文字）</td></tr>
+</table></div>
+<p style="font-family:var(--sans);font-size:13px;margin-top:8px;">小文字は大文字より 0x20（32）大きい。例：'A' = 0x41 = 65，'a' = 0x61 = 97</p>
+</div>
+</div><!-- /s2-2 -->
+
+<div class="section" id="s2-3">
+<h3>2.3 画像のデジタル化</h3>
+
+<div class="formula-box theorem">
+<strong>画像のデジタル化に関わる用語・計算</strong>
+<ul class="bullet">
+  <li><strong>画素（ピクセル）</strong>：画像を構成する最小単位の点</li>
+  <li><strong>解像度（dpi / ppi）</strong>：1インチあたりの画素数。高いほど高精細</li>
+  <li><strong>色深度（ビット深度）</strong>：1画素の色を何ビットで表すか</li>
+  <li><strong>フルカラー</strong>：RGB 各 8ビット = 24ビット = 約1677万色（2²⁴）</li>
+</ul>
+<div class="table-wrap"><table>
+  <tr><th>色深度</th><th>表現色数</th><th>用途</th></tr>
+  <tr><td>1 bit</td><td>2色（白黒）</td><td>QRコード，FAX</td></tr>
+  <tr><td>8 bit</td><td>256色</td><td>GIF，古いゲーム</td></tr>
+  <tr><td>16 bit</td><td>65,536色（ハイカラー）</td><td>一部の画像</td></tr>
+  <tr><td>24 bit</td><td>約1677万色（トゥルーカラー）</td><td>JPEG，PNG（Web標準）</td></tr>
+</table></div>
+</div>
+
+<div class="formula-box important">
+<strong>画像データ量の計算式</strong><br>
+$$\text{データ量（bit）} = \text{横の画素数} \times \text{縦の画素数} \times \text{色深度（bit）}$$
+<p style="margin-top:6px;font-family:var(--sans);font-size:13px;">1 byte = 8 bit　　1 KB = 1024 byte　　1 MB = 1024 KB</p>
+</div>
+
+<div class="example-box">
+<strong>例題 2.2</strong> <span class="lv lv-m">標準</span>　1920×1080 ピクセルのフルカラー（24 bit）画像の非圧縮データ量を MB で求めよ。
+<div class="answer-block">
+1920 × 1080 × 24 bit = 49,766,400 bit<br>
+÷ 8 = 6,220,800 byte<br>
+÷ 1024 = 6,075 KB<br>
+÷ 1024 ≈ <strong>5.93 MB</strong>
+</div>
+</div>
+
+<div class="exercise-block">
+<strong>練習 2.2</strong>　800×600 ピクセル，フルカラー（24 bit）の画像を圧縮率 1/10 の JPEG で保存したとき，ファイルサイズ（KB）を求めよ。
+<div class="answer-block">
+非圧縮：800×600×24 = 11,520,000 bit = 1,440,000 byte = 1406.25 KB<br>
+圧縮後：1406.25 × 1/10 ≈ <strong>約 140.6 KB</strong>
+</div>
+</div>
+</div><!-- /s2-3 -->
+
+<div class="section" id="s2-4">
+<h3>2.4 音声のデジタル化</h3>
+
+<div class="formula-box theorem">
+<strong>音声デジタル化の3ステップ</strong>
+<ol class="steps">
+  <li><strong>標本化（サンプリング）</strong>：一定時間ごとに音の波形の振幅を測定。1秒あたりの回数を<span class="hl">標本化周波数（サンプリングレート）</span>という（単位：Hz）</li>
+  <li><strong>量子化（クォンタイズ）</strong>：アナログ値を決められた段階数の整数に丸める。段階数は 2^（量子化ビット数）</li>
+  <li><strong>符号化（エンコード）</strong>：量子化した値を2進数で表現する</li>
+</ol>
+</div>
+
+<div class="formula-box important">
+<strong>音声データ量の計算式</strong>
+$$\text{データ量} = \text{標本化周波数（Hz）} \times \text{量子化ビット数（bit）} \times \text{チャンネル数} \times \text{秒数}$$
+<p style="font-family:var(--sans);font-size:13px;margin-top:6px;">CD音質：44,100 Hz × 16 bit × 2 ch（ステレオ）= <strong>1,411,200 bps ≈ 1.41 Mbps</strong></p>
+</div>
+
+<div class="tip-box">
+<strong>POINT：標本化定理（ナイキストの定理）</strong><br>
+元の音の最高周波数の<span class="hl">2倍以上</span>のサンプリングレートが必要。<br>
+例：人間の可聴域の最高 ≒ 20,000 Hz → CD は 44,100 Hz（20,000 × 2 = 40,000 Hz 以上）
+</div>
+
+<div class="example-box">
+<strong>例題 2.3</strong> <span class="lv lv-m">標準</span>　44,100 Hz，16 bit，ステレオで 3 分間録音した非圧縮音声データのサイズを MB で求めよ。
+<div class="answer-block">
+44,100 × 16 × 2 × (3×60) = 44,100 × 16 × 2 × 180<br>
+= 44,100 × 5,760 = 254,016,000 bit<br>
+÷ 8 = 31,752,000 byte ÷ 1024 ÷ 1024 ≈ <strong>30.3 MB</strong>
+</div>
+</div>
+</div><!-- /s2-4 -->
+
+<div class="section" id="s2-5">
+<h3>2.5 データ量の単位</h3>
+<div class="formula-box theorem">
+<strong>単位変換（暗記必須）</strong>
+<div class="table-wrap"><table>
+  <tr><th>単位</th><th>略称</th><th>値</th><th>目安</th></tr>
+  <tr><td>ビット</td><td>bit, b</td><td>—</td><td>情報の最小単位（0か1）</td></tr>
+  <tr><td>バイト</td><td>Byte, B</td><td>8 bit</td><td>英文字1文字</td></tr>
+  <tr><td>キロバイト</td><td>KB</td><td>1,024 B (= 2¹⁰)</td><td>テキスト数ページ</td></tr>
+  <tr><td>メガバイト</td><td>MB</td><td>1,024 KB (= 2²⁰)</td><td>写真1枚程度</td></tr>
+  <tr><td>ギガバイト</td><td>GB</td><td>1,024 MB (= 2³⁰)</td><td>映画1本程度</td></tr>
+  <tr><td>テラバイト</td><td>TB</td><td>1,024 GB (= 2⁴⁰)</td><td>HDD 1台程度</td></tr>
+</table></div>
+</div>
+</div>
+</div><!-- /ch2 -->
+
+<!-- ============================================================
+     第３章　コンピュータの仕組み
+============================================================ -->
+
+<div class="chapter" id="ch3">
+<div class="chapter-header">
+  <div class="ch-num">CHAPTER 03</div>
+  <h2>コンピュータの仕組み</h2>
+  <p>ハードウェアの構成，論理回路と真理値表，OSの役割まで。論理演算は計算問題でも頻出。</p>
+</div>
+
+<div class="section" id="s3-1">
+<h3>3.1 ハードウェアの構成</h3>
+
+<div class="formula-box theorem">
+<strong>コンピュータの5大装置（フォン・ノイマン型）</strong>
+<div class="sum-grid">
+  <div class="sum-card"><h4>① 制御装置</h4><p>プログラムの命令を解読し，各装置に指示を出す（CPU内部）</p></div>
+  <div class="sum-card"><h4>② 演算装置（ALU）</h4><p>算術演算・論理演算を実行（CPU内部）</p></div>
+  <div class="sum-card"><h4>③ 記憶装置</h4><p>主記憶（RAM/ROM）と補助記憶（HDD/SSD）に分類</p></div>
+  <div class="sum-card"><h4>④ 入力装置</h4><p>キーボード，マウス，スキャナ，マイクなど</p></div>
+  <div class="sum-card"><h4>⑤ 出力装置</h4><p>ディスプレイ，プリンタ，スピーカーなど</p></div>
+</div>
+</div>
+
+<div class="proof-box">
+<strong>記憶階層（上ほど高速・高価・小容量）</strong>
+<div class="table-wrap"><table>
+  <tr><th>種類</th><th>特徴</th><th>容量の目安</th><th>揮発性</th></tr>
+  <tr><td><strong>レジスタ</strong></td><td>CPU内，最高速</td><td>数十〜数百 B</td><td>揮発</td></tr>
+  <tr><td><strong>キャッシュメモリ</strong></td><td>CPU〜RAM間，L1/L2/L3</td><td>KB〜MB</td><td>揮発</td></tr>
+  <tr><td><strong>主記憶（RAM）</strong></td><td>プログラム実行時に使用</td><td>数 GB〜数十 GB</td><td>揮発</td></tr>
+  <tr><td><strong>補助記憶（SSD/HDD）</strong></td><td>データの永続保存</td><td>数百 GB〜数 TB</td><td>不揮発</td></tr>
+</table></div>
+</div>
+
+<div class="tip-box">
+<strong>POINT：</strong>RAMは電源を切ると内容が消える（揮発性）。ROMは読み取り専用で不揮発性（BIOS/UEFI など）。SSDはフラッシュメモリを使用し，HDDよりアクセス速度が速い。
+</div>
+</div><!-- /s3-1 -->
+
+<div class="section" id="s3-2">
+<h3>3.2 論理回路と論理演算</h3>
+
+<div class="formula-box important">
+<strong>基本論理演算の真理値表</strong>
+<div class="three-col">
+  <div>
+    <h4>AND（論理積）</h4>
+    <div class="table-wrap"><table>
+      <tr><th>A</th><th>B</th><th>A AND B</th></tr>
+      <tr><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>0</td><td>1</td><td>0</td></tr>
+      <tr><td>1</td><td>0</td><td>0</td></tr>
+      <tr><td>1</td><td>1</td><td class="red">1</td></tr>
+    </table></div>
+  </div>
+  <div>
+    <h4>OR（論理和）</h4>
+    <div class="table-wrap"><table>
+      <tr><th>A</th><th>B</th><th>A OR B</th></tr>
+      <tr><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>0</td><td>1</td><td class="red">1</td></tr>
+      <tr><td>1</td><td>0</td><td class="red">1</td></tr>
+      <tr><td>1</td><td>1</td><td class="red">1</td></tr>
+    </table></div>
+  </div>
+  <div>
+    <h4>NOT（否定）</h4>
+    <div class="table-wrap"><table>
+      <tr><th>A</th><th>NOT A</th></tr>
+      <tr><td>0</td><td class="red">1</td></tr>
+      <tr><td>1</td><td>0</td></tr>
+    </table></div>
+    <h4 style="margin-top:14px;">XOR（排他的論理和）</h4>
+    <div class="table-wrap"><table>
+      <tr><th>A</th><th>B</th><th>A XOR B</th></tr>
+      <tr><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>0</td><td>1</td><td class="red">1</td></tr>
+      <tr><td>1</td><td>0</td><td class="red">1</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td></tr>
+    </table></div>
+  </div>
+</div>
+</div>
+
+<div class="proof-box">
+<strong>NAND と NOR（万能ゲート）</strong><br>
+NAND = NOT AND，NOR = NOT OR。<strong>NAND だけ</strong>（または NOR だけ）で他のすべての論理回路を表現できる（→「万能ゲート」）。
+<div class="two-col" style="margin-top:10px;">
+  <div class="sum-card">
+    <h4>NAND 真理値表</h4>
+    <p>A=1, B=1 のとき 0，それ以外はすべて 1</p>
+  </div>
+  <div class="sum-card">
+    <h4>NOR 真理値表</h4>
+    <p>A=0, B=0 のとき 1，それ以外はすべて 0</p>
+  </div>
+</div>
+</div>
+
+<div class="example-box">
+<strong>例題 3.1</strong> <span class="lv lv-m">標準</span>　次の論理式の真理値表を作成せよ。<br>
+<code>X = (A AND B) OR (NOT A AND C)</code>
+<div class="answer-block">
+<div class="table-wrap"><table>
+  <tr><th>A</th><th>B</th><th>C</th><th>A AND B</th><th>NOT A AND C</th><th>X</th></tr>
+  <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+  <tr><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td class="red">1</td></tr>
+  <tr><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+  <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td class="red">1</td></tr>
+  <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+  <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+  <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td class="red">1</td></tr>
+  <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td class="red">1</td></tr>
+</table></div>
+</div>
+</div>
+</div><!-- /s3-2 -->
+
+<div class="section" id="s3-3">
+<h3>3.3 ソフトウェアとOS</h3>
+
+<div class="formula-box theorem">
+<strong>ソフトウェアの分類</strong>
+<div class="two-col">
+  <div class="sum-card">
+    <h4>システムソフトウェア</h4>
+    <p><strong>OS（オペレーティングシステム）</strong>：ハードウェアとアプリケーションの仲介。<br>主な機能：プロセス管理・メモリ管理・ファイルシステム・デバイス管理</p>
+  </div>
+  <div class="sum-card">
+    <h4>アプリケーションソフトウェア</h4>
+    <p>特定の用途向けソフト。ワープロ・表計算・ブラウザ・ゲームなど。OSの上で動作する。</p>
+  </div>
+</div>
+</div>
+
+<div class="tip-box">
+<strong>POINT：OSの主な役割（入試頻出）</strong>
+<ul class="bullet">
+  <li><strong>プロセス管理</strong>：複数のプログラムを並行実行（マルチタスク）</li>
+  <li><strong>メモリ管理</strong>：各プロセスにメモリを割り当て，保護する</li>
+  <li><strong>ファイルシステム</strong>：ディスクへのデータ読み書きを管理（フォルダ・パス）</li>
+  <li><strong>入出力管理（デバイスドライバ）</strong>：ハードウェアと通信する</li>
+  <li><strong>ユーザインターフェース</strong>：CUI（コマンド）または GUI（グラフィカル）</li>
+</ul>
+</div>
+</div>
+</div><!-- /ch3 -->
+
+<!-- ============================================================
+     第４章　アルゴリズムとプログラミング
+============================================================ -->
+
+<div class="chapter" id="ch4">
+<div class="chapter-header">
+  <div class="ch-num">CHAPTER 04</div>
+  <h2>アルゴリズムとプログラミング</h2>
+  <p>フローチャートから始まり，変数・条件・繰り返し・配列・ソート・探索まで。擬似コードの読み書きが共通テストの中心。</p>
+</div>
+
+<div class="section" id="s4-1">
+<h3>4.1 アルゴリズムと流れ図（フローチャート）</h3>
+
+<div class="formula-box theorem">
+<strong>フローチャートの記号（JIS X 0121）</strong>
+<div class="table-wrap"><table>
+  <tr><th>記号</th><th>形</th><th>意味</th></tr>
+  <tr><td>端子</td><td>角丸長方形・楕円</td><td>開始・終了</td></tr>
+  <tr><td>処理</td><td>長方形</td><td>計算・代入など</td></tr>
+  <tr><td>判断（条件分岐）</td><td>ひし形（菱形）</td><td>条件によって分岐（はい/いいえ）</td></tr>
+  <tr><td>ループ</td><td>六角形または矢印で表記</td><td>繰り返し範囲</td></tr>
+  <tr><td>入出力</td><td>平行四辺形</td><td>データの入力・出力</td></tr>
+  <tr><td>流れ線</td><td>矢印</td><td>処理の順序</td></tr>
+</table></div>
+</div>
+
+<div class="formula-box definition">
+<strong>アルゴリズムの3つの基本構造（構造化プログラミング）</strong>
+<div class="three-col">
+  <div class="sum-card"><h4>① 順次</h4><p>上から下へ順番に処理する。最も基本的な流れ。</p></div>
+  <div class="sum-card"><h4>② 分岐（選択）</h4><p>条件によって処理を分ける。if-else 文。</p></div>
+  <div class="sum-card"><h4>③ 反復（繰り返し）</h4><p>条件が満たされる間，処理を繰り返す。while/for 文。</p></div>
+</div>
+</div>
+</div><!-- /s4-1 -->
+
+<div class="section" id="s4-2">
+<h3>4.2 擬似コード：変数・条件分岐・繰り返し</h3>
+
+<div class="proof-box">
+<strong>1〜100 の合計を求める擬似コード</strong>
+<div class="code-block">
+<span class="kw">合計</span> ← 0<br>
+<span class="kw">i</span> ← 1<br>
+<span class="kw">while</span> i ≦ 100 <span class="kw">do</span><br>
+&nbsp;&nbsp;<span class="kw">合計</span> ← 合計 + i<br>
+&nbsp;&nbsp;<span class="kw">i</span> ← i + 1<br>
+<span class="kw">end while</span><br>
+<span class="kw">表示</span> 合計  <span class="cm">→ 5050</span>
+</div>
+</div>
+
+<div class="proof-box">
+<strong>最大値を求める擬似コード（配列の要素から）</strong>
+<div class="code-block">
+<span class="cm">// 配列 A = [3, 7, 1, 9, 4, 6]，要素数 n = 6</span><br>
+<span class="kw">最大値</span> ← A[1]<br>
+<span class="kw">for</span> i ← 2 <span class="kw">to</span> n <span class="kw">do</span><br>
+&nbsp;&nbsp;<span class="kw">if</span> A[i] &gt; 最大値 <span class="kw">then</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">最大値</span> ← A[i]<br>
+&nbsp;&nbsp;<span class="kw">end if</span><br>
+<span class="kw">end for</span><br>
+<span class="kw">表示</span> 最大値  <span class="cm">→ 9</span>
+</div>
+</div>
+
+<div class="example-box">
+<strong>例題 4.1</strong> <span class="lv lv-m">標準</span>　以下の擬似コードを実行したとき，表示される値を答えよ。
+<div class="code-block">
+x ← 1<br>
+<span class="kw">while</span> x * x ≦ 100 <span class="kw">do</span><br>
+&nbsp;&nbsp;x ← x + 1<br>
+<span class="kw">end while</span><br>
+<span class="kw">表示</span> x
+</div>
+<div class="answer-block">
+x = 1 → 1≦100 → x=2 → 4≦100 → … → x=10 → 100≦100 → x=11 → 121 &gt; 100 → ループ終了<br>
+表示される値：<strong>11</strong>
+</div>
+</div>
+</div><!-- /s4-2 -->
+
+<div class="section" id="s4-4">
+<h3>4.4 ソートアルゴリズム</h3>
+
+<div class="formula-box theorem">
+<strong>バブルソート（Bubble Sort）</strong>
+<ul class="bullet">
+  <li>隣接する2要素を比較し，大きい方を右に移動させる操作を繰り返す</li>
+  <li>計算量：O(n²)　安定ソート</li>
+</ul>
+<div class="code-block">
+<span class="cm">// 昇順ソート，配列 A，要素数 n</span><br>
+<span class="kw">for</span> i ← 1 <span class="kw">to</span> n-1 <span class="kw">do</span><br>
+&nbsp;&nbsp;<span class="kw">for</span> j ← 1 <span class="kw">to</span> n-i <span class="kw">do</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> A[j] &gt; A[j+1] <span class="kw">then</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tmp ← A[j]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A[j] ← A[j+1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A[j+1] ← tmp<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">end if</span><br>
+&nbsp;&nbsp;<span class="kw">end for</span><br>
+<span class="kw">end for</span>
+</div>
+</div>
+
+<div class="formula-box theorem">
+<strong>選択ソート（Selection Sort）</strong>
+<ul class="bullet">
+  <li>未整列部分から最小値を選んで先頭に移動させる操作を繰り返す</li>
+  <li>計算量：O(n²)　非安定ソート</li>
+</ul>
+</div>
+
+<div class="tip-box">
+<strong>POINT：各ソートの比較量</strong>
+<div class="table-wrap"><table>
+  <tr><th>ソート名</th><th>平均計算量</th><th>最悪計算量</th><th>安定性</th></tr>
+  <tr><td>バブルソート</td><td>O(n²)</td><td>O(n²)</td><td>安定</td></tr>
+  <tr><td>選択ソート</td><td>O(n²)</td><td>O(n²)</td><td>非安定</td></tr>
+  <tr><td>挿入ソート</td><td>O(n²)</td><td>O(n²)</td><td>安定</td></tr>
+  <tr><td>クイックソート</td><td>O(n log n)</td><td>O(n²)</td><td>非安定</td></tr>
+  <tr><td>マージソート</td><td>O(n log n)</td><td>O(n log n)</td><td>安定</td></tr>
+</table></div>
+</div>
+
+<div class="example-box">
+<strong>例題 4.2</strong> <span class="lv lv-m">標準</span>　配列 [5, 3, 8, 1, 4] をバブルソートで昇順に並べる過程を，1パスごとに示せ。
+<div class="answer-block">
+初期：[5, 3, 8, 1, 4]<br>
+1パス目：5&gt;3→交換，5&lt;8→そのまま，8&gt;1→交換，8&gt;4→交換 → [3, 5, 1, 4, <span class="red">8</span>]<br>
+2パス目：3&lt;5→そのまま，5&gt;1→交換，5&gt;4→交換 → [3, 1, 4, <span class="red">5, 8</span>]<br>
+3パス目：3&gt;1→交換，3&lt;4→そのまま → [1, 3, <span class="red">4, 5, 8</span>]<br>
+4パス目：1&lt;3→そのまま → [<span class="red">1, 3, 4, 5, 8</span>]　完了
+</div>
+</div>
+</div><!-- /s4-4 -->
+
+<div class="section" id="s4-5">
+<h3>4.5 探索アルゴリズム</h3>
+
+<div class="formula-box theorem">
+<strong>線形探索（Linear Search）</strong>
+<ul class="bullet">
+  <li>先頭から順番に目的の値と比較していく</li>
+  <li>ランダムなデータでも使える</li>
+  <li>計算量：O(n)</li>
+</ul>
+</div>
+
+<div class="formula-box theorem">
+<strong>二分探索（Binary Search）</strong>
+<ul class="bullet">
+  <li><strong>昇順に整列済み</strong>の配列にのみ適用可能</li>
+  <li>中央値と比較して，探索範囲を半分に絞る操作を繰り返す</li>
+  <li>計算量：O(log₂n)　例：n=1000 でも最大 10 回程度</li>
+</ul>
+<div class="code-block">
+<span class="cm">// 配列 A（昇順），探す値 key</span><br>
+left ← 1 &nbsp; right ← n<br>
+<span class="kw">while</span> left ≦ right <span class="kw">do</span><br>
+&nbsp;&nbsp;mid ← (left + right) ÷ 2 <span class="cm">（小数点以下切り捨て）</span><br>
+&nbsp;&nbsp;<span class="kw">if</span> A[mid] = key <span class="kw">then</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">表示</span> mid &nbsp; <span class="kw">break</span><br>
+&nbsp;&nbsp;<span class="kw">else if</span> A[mid] &lt; key <span class="kw">then</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;left ← mid + 1<br>
+&nbsp;&nbsp;<span class="kw">else</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;right ← mid - 1<br>
+&nbsp;&nbsp;<span class="kw">end if</span><br>
+<span class="kw">end while</span>
+</div>
+</div>
+
+<div class="example-box">
+<strong>例題 4.3</strong> <span class="lv lv-a">応用</span>　配列 [2, 5, 8, 12, 16, 23, 38, 56, 72, 91] から値 23 を二分探索する手順を示せ。要素数は 10。
+<div class="answer-block">
+1回目：left=1, right=10, mid=5, A[5]=16 &lt; 23 → left=6<br>
+2回目：left=6, right=10, mid=8, A[8]=56 &gt; 23 → right=7<br>
+3回目：left=6, right=7, mid=6, A[6]=23 = 23 → <strong>発見！（インデックス 6）</strong><br>
+比較回数：3回（線形探索だと最大 10 回）
+</div>
+</div>
+</div><!-- /s4-5 -->
+</div><!-- /ch4 -->
+
+<!-- ============================================================
+     第５章　ネットワークとセキュリティ
+============================================================ -->
+
+<div class="chapter" id="ch5">
+<div class="chapter-header">
+  <div class="ch-num">CHAPTER 05</div>
+  <h2>ネットワークとセキュリティ</h2>
+  <p>TCP/IP の階層モデル，IPアドレスとサブネット計算，DNSの仕組み，HTTPSとTLS，暗号化手法まで幅広く扱う。</p>
+</div>
+
+<div class="section" id="s5-1">
+<h3>5.1 ネットワークの仕組み</h3>
+
+<div class="formula-box theorem">
+<strong>TCP/IP の4階層モデル</strong>
+<div class="table-wrap"><table>
+  <tr><th>階層</th><th>名称</th><th>主なプロトコル</th><th>役割</th></tr>
+  <tr><td>4層</td><td>アプリケーション層</td><td>HTTP, HTTPS, FTP, SMTP, POP3, DNS</td><td>ユーザアプリの通信</td></tr>
+  <tr><td>3層</td><td>トランスポート層</td><td>TCP, UDP</td><td>信頼性・ポート番号管理</td></tr>
+  <tr><td>2層</td><td>インターネット層</td><td>IP, ICMP, ARP</td><td>IPアドレスによるルーティング</td></tr>
+  <tr><td>1層</td><td>ネットワークインターフェース層</td><td>Ethernet, Wi-Fi</td><td>物理的な通信</td></tr>
+</table></div>
+</div>
+
+<div class="proof-box">
+<strong>TCP と UDP の比較</strong>
+<div class="two-col">
+  <div class="sum-card">
+    <h4>TCP（信頼性あり）</h4>
+    <p>3ウェイハンドシェイク（SYN→SYN-ACK→ACK）で接続を確立。再送制御・順序保証あり。<br>用途：HTTP/S, FTP, SMTP</p>
+  </div>
+  <div class="sum-card">
+    <h4>UDP（高速・低遅延）</h4>
+    <p>接続確立なし。信頼性より速度優先。パケット損失しても再送しない。<br>用途：動画ストリーミング，DNS, ゲーム</p>
+  </div>
+</div>
+</div>
+
+<div class="formula-box definition">
+<strong>主なポート番号（暗記必須）</strong>
+<div class="table-wrap"><table>
+  <tr><th>ポート番号</th><th>プロトコル</th><th>用途</th></tr>
+  <tr><td>20, 21</td><td>FTP</td><td>ファイル転送</td></tr>
+  <tr><td>22</td><td>SSH</td><td>安全なリモート接続</td></tr>
+  <tr><td>25</td><td>SMTP</td><td>メール送信</td></tr>
+  <tr><td>53</td><td>DNS</td><td>ドメイン名解決</td></tr>
+  <tr><td>80</td><td>HTTP</td><td>Web（暗号化なし）</td></tr>
+  <tr><td>110</td><td>POP3</td><td>メール受信</td></tr>
+  <tr><td>443</td><td>HTTPS</td><td>Web（TLS暗号化）</td></tr>
+</table></div>
+</div>
+</div><!-- /s5-1 -->
+
+<div class="section" id="s5-2">
+<h3>5.2 IPアドレスとDNS</h3>
+
+<div class="formula-box theorem">
+<strong>IPv4 アドレスの構造</strong>
+<ul class="bullet">
+  <li>32 bit（4 オクテット）を点区切り10進数で表記。例：<code>192.168.1.100</code></li>
+  <li><strong>ネットワーク部</strong>：どのネットワークか（ルーティングに使用）</li>
+  <li><strong>ホスト部</strong>：そのネットワーク内の個々の機器</li>
+  <li><strong>サブネットマスク</strong>：ネットワーク部とホスト部の境界を示す。例：/24 = 255.255.255.0</li>
+</ul>
+<div class="table-wrap"><table>
+  <tr><th>クラス</th><th>範囲</th><th>デフォルトマスク</th><th>最大ホスト数</th></tr>
+  <tr><td>A</td><td>0.0.0.0 〜 127.255.255.255</td><td>/8 (255.0.0.0)</td><td>約1677万</td></tr>
+  <tr><td>B</td><td>128.0.0.0 〜 191.255.255.255</td><td>/16 (255.255.0.0)</td><td>約6.5万</td></tr>
+  <tr><td>C</td><td>192.0.0.0 〜 223.255.255.255</td><td>/24 (255.255.255.0)</td><td>254</td></tr>
+</table></div>
+</div>
+
+<div class="formula-box important">
+<strong>プライベートIPアドレス（社内ネットワーク等で使用）</strong>
+<ul class="bullet">
+  <li>10.0.0.0 〜 10.255.255.255（/8）</li>
+  <li>172.16.0.0 〜 172.31.255.255（/12）</li>
+  <li>192.168.0.0 〜 192.168.255.255（/16）</li>
+</ul>
+インターネット上には直接出られない。NAT（ネットワークアドレス変換）でグローバルIPに変換する。
+</div>
+
+<div class="proof-box">
+<strong>DNS（ドメインネームシステム）の仕組み</strong>
+<ol class="steps">
+  <li>ユーザが <code>www.example.com</code> にアクセスしようとする</li>
+  <li>PCのリゾルバが<strong>キャッシュDNSサーバ</strong>に問い合わせる</li>
+  <li>キャッシュになければ，<strong>ルートDNS → .comの権威DNS → example.comの権威DNS</strong>と再帰的に問い合わせる</li>
+  <li>IPアドレスが返ってきて，PCはそのIPへ通信する</li>
+</ol>
+<p style="font-family:var(--sans);font-size:13px;margin-top:8px;color:#555;">AレコードはIPv4アドレス，AAAAレコードはIPv6アドレスへの対応を保持する。</p>
+</div>
+
+<div class="example-box">
+<strong>例題 5.1</strong> <span class="lv lv-m">標準</span>　IPアドレス 192.168.10.50 / 24 のネットワークについて答えよ。<br>
+(1) ネットワークアドレスは何か。<br>
+(2) ブロードキャストアドレスは何か。<br>
+(3) 割り当て可能なホスト数は何台か。
+<div class="answer-block">
+(1) サブネットマスク /24 = 255.255.255.0 → 上位24ビットがネットワーク部 → <strong>192.168.10.0</strong><br>
+(2) ホスト部をすべて1に：<strong>192.168.10.255</strong><br>
+(3) 2⁸ - 2 = 256 - 2 = <strong>254 台</strong>（ネットワークアドレスとブロードキャストを除く）
+</div>
+</div>
+</div><!-- /s5-2 -->
+
+<div class="section" id="s5-3">
+<h3>5.3 セキュリティ技術</h3>
+
+<div class="formula-box theorem">
+<strong>HTTPS と TLS のしくみ</strong>
+<ol class="steps">
+  <li>クライアントが「Client Hello」（使用できる暗号スイート等を送信）</li>
+  <li>サーバが<strong>電子証明書</strong>（公開鍵含む）を送付</li>
+  <li>クライアントが証明書を<strong>認証局（CA）の公開鍵</strong>で検証</li>
+  <li>共通鍵（セッションキー）を公開鍵暗号で安全に交換</li>
+  <li>以降，共通鍵（AES等）で暗号化して通信</li>
+</ol>
+</div>
+
+<div class="formula-box definition">
+<strong>認証技術の種類</strong>
+<div class="two-col">
+  <div class="sum-card">
+    <h4>多要素認証（MFA）</h4>
+    <p>知識（パスワード）＋所持（スマホのOTP）＋生体（指紋）のうち2つ以上を組み合わせる。</p>
+  </div>
+  <div class="sum-card">
+    <h4>生体認証（Biometrics）</h4>
+    <p>指紋・顔・虹彩・声紋など。FAR（誤受容率）とFRR（誤拒否率）のバランスが重要。</p>
+  </div>
+</div>
+</div>
+
+<div class="exam-card">
+  <div class="exam-hd">
+    <span>入試レベル問題 5.1</span>
+    <span class="etag tag-sec">セキュリティ</span>
+  </div>
+  <div class="exam-body">
+    <p><strong>問</strong>　ある企業が共通鍵暗号で 100 人の社員全員が互いに安全に通信できるようにするには，全体で最低何個の鍵が必要か。また，公開鍵暗号に切り替えると何個必要か。</p>
+    <div class="answer-block">
+      <strong>共通鍵暗号：</strong>ペアごとに1つの鍵が必要。100人の組み合わせは C(100,2) = 100×99÷2 = <strong>4,950 個</strong><br>
+      <strong>公開鍵暗号：</strong>各人が「公開鍵 + 秘密鍵」1ペアずつ持てばよい。100×2 = <strong>200 個</strong><br>
+      → 公開鍵暗号は人数が増えても鍵の管理数が少ない（鍵配送問題を解決）。
+    </div>
+  </div>
+</div>
+</div><!-- /s5-3 -->
+</div><!-- /ch5 -->
+
+<!-- ============================================================
+     第６章　データの活用
+============================================================ -->
+
+<div class="chapter" id="ch6">
+<div class="chapter-header">
+  <div class="ch-num">CHAPTER 06</div>
+  <h2>データの活用</h2>
+  <p>統計の基礎（平均・分散・標準偏差・相関）から，モデル化とシミュレーションまで。計算と解釈の両方を練習する。</p>
+</div>
+
+<div class="section" id="s6-1">
+<h3>6.1 データの収集・整理</h3>
+
+<div class="formula-box theorem">
+<strong>データの種類</strong>
+<div class="two-col">
+  <div class="sum-card">
+    <h4>量的データ（数値データ）</h4>
+    <p>身長・気温・売上など数値で表せるもの。<br>さらに<strong>連続量</strong>（身長・気温）と<strong>離散量</strong>（個数・回数）に分かれる。</p>
+  </div>
+  <div class="sum-card">
+    <h4>質的データ（カテゴリデータ）</h4>
+    <p>性別・血液型・都道府県など数値に意味がないもの。分類・集計に使う。</p>
+  </div>
+</div>
+</div>
+
+<div class="tip-box">
+<strong>POINT：データ収集時の注意</strong>
+<ul class="bullet">
+  <li><strong>標本調査</strong>（サンプリング）vs <strong>全数調査</strong>（センサス）</li>
+  <li>サンプリングバイアス：特定の集団に偏ったデータは母集団を正確に反映しない</li>
+  <li><strong>外れ値（異常値）</strong>：計算ミス・測定ミスによるものは除外を検討（理由の記録必須）</li>
+  <li>データクレンジング：欠損値・重複・誤記の処理</li>
+</ul>
+</div>
+</div><!-- /s6-1 -->
+
+<div class="section" id="s6-2">
+<h3>6.2 代表値・分散・標準偏差</h3>
+
+<div class="formula-box important">
+<strong>基本統計量の公式（暗記必須）</strong><br>
+データ：$x_1, x_2, \ldots, x_n$
+$$\text{平均値 } \bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$$
+$$\text{分散 } s^2 = \frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^2 = \frac{1}{n}\sum x_i^2 - \bar{x}^2$$
+$$\text{標準偏差 } s = \sqrt{s^2}$$
+<p style="margin-top:8px;font-family:var(--sans);font-size:13px;">
+中央値（メジアン）：データを昇順に並べた中央の値。外れ値に強い。<br>
+最頻値（モード）：最も頻繁に現れる値。
+</p>
+</div>
+
+<div class="example-box">
+<strong>例題 6.1</strong> <span class="lv lv-b">基礎</span>　データ [2, 4, 4, 6, 8, 10] の平均・分散・標準偏差を求めよ。
+<div class="answer-block">
+平均：(2+4+4+6+8+10)/6 = 34/6 ≈ <strong>5.67</strong><br>
+各偏差の2乗：(2-5.67)²=13.44, (4-5.67)²=2.78, (4-5.67)²=2.78, (6-5.67)²=0.11, (8-5.67)²=5.44, (10-5.67)²=18.77<br>
+分散：(13.44+2.78+2.78+0.11+5.44+18.77)/6 = 43.33/6 ≈ <strong>7.22</strong><br>
+標準偏差：√7.22 ≈ <strong>2.69</strong>
+</div>
+</div>
+</div><!-- /s6-2 -->
+
+<div class="section" id="s6-3">
+<h3>6.3 相関と回帰</h3>
+
+<div class="formula-box theorem">
+<strong>相関係数 r の定義と解釈</strong>
+$$r = \frac{\displaystyle\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{n \cdot s_x \cdot s_y} \quad (-1 \leq r \leq 1)$$
+<div class="table-wrap"><table>
+  <tr><th>r の値</th><th>相関の強さ・向き</th></tr>
+  <tr><td>0.7 ≦ r ≦ 1.0</td><td>強い正の相関</td></tr>
+  <tr><td>0.4 ≦ r &lt; 0.7</td><td>弱い正の相関</td></tr>
+  <tr><td>-0.4 &lt; r &lt; 0.4</td><td>相関なし（または非常に弱い）</td></tr>
+  <tr><td>-0.7 &lt; r ≦ -0.4</td><td>弱い負の相関</td></tr>
+  <tr><td>-1.0 ≦ r ≦ -0.7</td><td>強い負の相関</td></tr>
+</table></div>
+</div>
+
+<div class="important-box">
+<strong>注意：相関と因果関係は異なる</strong><br>
+2つの変数に強い相関があっても，一方が他方の<strong>原因</strong>とは限らない。第3の変数（交絡変数・疑似相関）が影響している場合がある。<br>
+例：アイスクリームの販売数と溺死者数は正の相関 → 共通原因「夏・気温」が存在する。
+</div>
+
+<div class="formula-box definition">
+<strong>回帰直線（最小二乗法）</strong>
+$$y = ax + b, \quad a = \frac{\displaystyle\sum(x_i-\bar{x})(y_i-\bar{y})}{\displaystyle\sum(x_i-\bar{x})^2} = \frac{s_{xy}}{s_x^2}, \quad b = \bar{y} - a\bar{x}$$
+回帰直線は必ず点 $(\bar{x}, \bar{y})$ を通る。予測（内挿）には使えるが，極端な外挿は信頼性が低い。
+</div>
+</div><!-- /s6-3 -->
+
+<div class="section" id="s6-4">
+<h3>6.4 モデル化とシミュレーション</h3>
+
+<div class="formula-box theorem">
+<strong>モデル化の種類</strong>
+<div class="three-col">
+  <div class="sum-card"><h4>数式モデル</h4><p>現象を数式で表現。例：f=ma（運動方程式）</p></div>
+  <div class="sum-card"><h4>グラフモデル</h4><p>ネットワーク構造を頂点と辺で表現。経路問題など。</p></div>
+  <div class="sum-card"><h4>確率モデル</h4><p>乱数を用いて確率的な現象をシミュレート（モンテカルロ法）</p></div>
+</div>
+</div>
+
+<div class="example-box">
+<strong>例題 6.2</strong> <span class="lv lv-m">標準</span>　モンテカルロ法で円周率 π を求める手順を説明せよ。
+<div class="answer-block">
+<ol class="num">
+  <li>1×1の正方形内に乱数で点 (x, y) を多数発生させる（x, y ∈ [0,1]）</li>
+  <li>原点からの距離 √(x²+y²) ≦ 1 の点を「円内の点」とカウントする</li>
+  <li>π ≒ 4 × （円内の点の数）÷（全点数）</li>
+</ol>
+理由：1辺1の正方形面積 = 1，半径1の四分円面積 = π/4 なので，無作為に点を置いた場合，円内に入る確率は π/4。
+</div>
+</div>
+
+<div class="exercise-block">
+<strong>練習 6.1</strong>　以下の問いに答えよ。<br>
+(1) シミュレーションを行うことのメリットを2つ述べよ。<br>
+(2) シミュレーションを使っても信頼性が低くなる場合を1つ挙げよ。
+<div class="answer-block">
+(1) ①現実では危険・高コスト・困難な実験をコンピュータ上で安全に実施できる。②パラメータを変えた多数の実験を短時間で実施できる。<br>
+(2) モデルの前提や数式が現実と大きく乖離している場合（モデルの妥当性が低い場合）
+</div>
+</div>
+</div><!-- /s6-4 -->
+</div><!-- /ch6 -->
+
+<!-- ============================================================
+     付録　暗記カード・重要語句一覧
+============================================================ -->
+
+<div class="chapter" id="ch0">
+<div class="chapter-header">
+  <div class="ch-num">付録</div>
+  <h2>暗記カード・重要語句一覧</h2>
+  <p>入試直前にチェックすべき重要語句・数値を分野別にまとめた。</p>
+</div>
+
+<div class="section">
+<h3>数値の暗記ポイント</h3>
+<div class="memo-grid">
+  <div class="memo-card"><div class="memo-q">1 byte =</div><div class="memo-a">8 bit</div></div>
+  <div class="memo-card"><div class="memo-q">1 KB =</div><div class="memo-a">1024 byte = 2¹⁰</div></div>
+  <div class="memo-card"><div class="memo-q">フルカラーの色深度</div><div class="memo-a">24 bit（RGB各8bit）</div></div>
+  <div class="memo-card"><div class="memo-q">CD音質サンプリングレート</div><div class="memo-a">44,100 Hz</div></div>
+  <div class="memo-card"><div class="memo-q">IPv4のビット数</div><div class="memo-a">32 bit</div></div>
+  <div class="memo-card"><div class="memo-q">著作権保護期間</div><div class="memo-a">著作者の死後70年</div></div>
+  <div class="memo-card"><div class="memo-q">HTTPSのポート番号</div><div class="memo-a">443</div></div>
+  <div class="memo-card"><div class="memo-q">DNSのポート番号</div><div class="memo-a">53</div></div>
+  <div class="memo-card"><div class="memo-q">8 bitで表せるパターン数</div><div class="memo-a">2⁸ = 256</div></div>
+  <div class="memo-card"><div class="memo-q">CIAとは（セキュリティ）</div><div class="memo-a">機密性・完全性・可用性</div></div>
+  <div class="memo-card"><div class="memo-q">XOR の特徴</div><div class="memo-a">同じ入力なら0，異なれば1</div></div>
+  <div class="memo-card"><div class="memo-q">二分探索の計算量</div><div class="memo-a">O(log₂n)</div></div>
+</div>
+</div>
+
+<div class="section">
+<h3>重要語句チェックリスト</h3>
+<div class="two-col">
+  <div>
+    <h4>情報社会・倫理</h4>
+    <ul class="bullet">
+      <li>著作者人格権（氏名表示権・同一性保持権・公表権）は<span class="red">譲渡不可</span></li>
+      <li>個人識別符号：マイナンバー・指紋など<span class="hl">単体で個人情報</span></li>
+      <li>要配慮個人情報：病歴・信条など取得に本人同意必要</li>
+      <li>デジタルタトゥー：一度公開した情報は消えにくい</li>
+      <li>PDCA サイクル：Plan→Do→Check→Act</li>
+    </ul>
+    <h4 style="margin-top:16px;">ネットワーク</h4>
+    <ul class="bullet">
+      <li>TCP：信頼性あり・3ウェイハンドシェイク</li>
+      <li>UDP：高速・再送なし</li>
+      <li>NAT：プライベートIPをグローバルIPに変換</li>
+      <li>DHCP：IPアドレスを自動割り当て</li>
+      <li>ファイアウォール：不正な通信をブロック</li>
+      <li>VPN：暗号化トンネルで安全なリモート接続</li>
+    </ul>
+  </div>
+  <div>
+    <h4>セキュリティ</h4>
+    <ul class="bullet">
+      <li>公開鍵暗号（RSA）：公開鍵で暗号化→秘密鍵で復号</li>
+      <li>デジタル署名：秘密鍵で署名→公開鍵で検証</li>
+      <li>ハッシュ関数：一方向性・衝突耐性</li>
+      <li>認証局（CA）：電子証明書を発行・保証</li>
+      <li>マルウェア：ウイルス・ワーム・ランサムウェア</li>
+      <li>フィッシング：偽サイト・偽メールで情報詐取</li>
+    </ul>
+    <h4 style="margin-top:16px;">データ活用</h4>
+    <ul class="bullet">
+      <li>中央値：外れ値の影響を受けにくい</li>
+      <li>相関係数 r：−1〜1，|r|&gt;0.7 で強い相関</li>
+      <li>相関 ≠ 因果（疑似相関に注意）</li>
+      <li>回帰直線：必ず (x̄, ȳ) を通る</li>
+      <li>モンテカルロ法：乱数を用いた確率シミュレーション</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<h3>入試頻出テーマ・解法チェックリスト</h3>
+<div class="exam-card">
+  <div class="exam-hd">
+    <span>共通テスト・大学入試 頻出パターン</span>
+    <span class="etag tag-exp">入試</span>
+  </div>
+  <div class="exam-body">
+    <div class="two-col">
+      <div>
+        <h4>計算問題（必出）</h4>
+        <ul class="bullet">
+          <li>□進数の変換（特に2進⟷16進）</li>
+          <li>画像データ量（解像度×色深度÷8）</li>
+          <li>音声データ量（Hz×bit×ch×秒）</li>
+          <li>通信時間（データ量÷回線速度）</li>
+          <li>サブネット計算（使用可能ホスト数）</li>
+          <li>平均・分散・標準偏差・相関係数</li>
+        </ul>
+      </div>
+      <div>
+        <h4>記述・選択問題（理解が必要）</h4>
+        <ul class="bullet">
+          <li>擬似コードのトレース（変数の値追跡）</li>
+          <li>ソートアルゴリズムの動作確認</li>
+          <li>論理回路・真理値表の完成</li>
+          <li>暗号化の仕組みと使い分け</li>
+          <li>法律の適用判断（著作権・個人情報）</li>
+          <li>相関の解釈と疑似相関の指摘</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div><!-- /ch0 -->
+
+</div><!-- /main-content -->
+
+<a href="#top" class="back-to-top no-print" title="トップへ">▲</a>
+
+<!-- Symbol Guide Panel -->
+
+<button id="sym-guide-btn" class="no-print" title="用語ガイド">用語</button>
+
+<div id="sym-guide-panel" class="no-print">
+  <div class="sg-hd">
+    📖 情報Ⅰ 用語・単位ガイド
+    <button onclick="document.getElementById('sym-guide-panel').classList.remove('open')">✕</button>
+  </div>
+  <div class="sg-body">
+    <div class="sg-sec">
+      <div class="sg-sec-title">■ データ量・単位</div>
+      <div class="sg-row"><span class="sg-sym">bit</span><span class="sg-read">ビット</span><span class="sg-mean">情報の最小単位（0か1）</span></div>
+      <div class="sg-row"><span class="sg-sym">B（byte）</span><span class="sg-read">バイト</span><span class="sg-mean">8 bit。英字1文字分</span></div>
+      <div class="sg-row"><span class="sg-sym">KB</span><span class="sg-read">キロバイト</span><span class="sg-mean">1024 byte = 2¹⁰ B</span></div>
+      <div class="sg-row"><span class="sg-sym">MB</span><span class="sg-read">メガバイト</span><span class="sg-mean">1024 KB = 2²⁰ B</span></div>
+      <div class="sg-row"><span class="sg-sym">GB</span><span class="sg-read">ギガバイト</span><span class="sg-mean">1024 MB = 2³⁰ B</span></div>
+      <div class="sg-row"><span class="sg-sym">bps</span><span class="sg-read">ビーピーエス</span><span class="sg-mean">bits per second（通信速度）</span></div>
+      <div class="sg-row"><span class="sg-sym">Hz</span><span class="sg-read">ヘルツ</span><span class="sg-mean">サンプリングレート（1秒あたり）</span></div>
+    </div>
+    <div class="sg-sec">
+      <div class="sg-sec-title">■ ネットワーク略語</div>
+      <div class="sg-row"><span class="sg-sym">TCP</span><span class="sg-read">ティーシーピー</span><span class="sg-mean">信頼性の高い通信プロトコル</span></div>
+      <div class="sg-row"><span class="sg-sym">UDP</span><span class="sg-read">ユーディーピー</span><span class="sg-mean">高速・低遅延プロトコル</span></div>
+      <div class="sg-row"><span class="sg-sym">IP</span><span class="sg-read">アイピー</span><span class="sg-mean">Internet Protocol（アドレス管理）</span></div>
+      <div class="sg-row"><span class="sg-sym">DNS</span><span class="sg-read">ディーエヌエス</span><span class="sg-mean">ドメイン名→IPアドレス変換</span></div>
+      <div class="sg-row"><span class="sg-sym">NAT</span><span class="sg-read">ナット</span><span class="sg-mean">プライベート↔グローバルIP変換</span></div>
+      <div class="sg-row"><span class="sg-sym">DHCP</span><span class="sg-read">ディーエイチシーピー</span><span class="sg-mean">IPアドレス自動割り当て</span></div>
+    </div>
+    <div class="sg-sec">
+      <div class="sg-sec-title">■ セキュリティ略語</div>
+      <div class="sg-row"><span class="sg-sym">CIA</span><span class="sg-read">シーアイエー</span><span class="sg-mean">機密性・完全性・可用性</span></div>
+      <div class="sg-row"><span class="sg-sym">AES</span><span class="sg-read">エーイーエス</span><span class="sg-mean">共通鍵暗号方式（128/256bit）</span></div>
+      <div class="sg-row"><span class="sg-sym">RSA</span><span class="sg-read">アールエスエー</span><span class="sg-mean">公開鍵暗号方式（素因数分解）</span></div>
+      <div class="sg-row"><span class="sg-sym">CA</span><span class="sg-read">認証局</span><span class="sg-mean">Certificate Authority：証明書発行</span></div>
+      <div class="sg-row"><span class="sg-sym">TLS</span><span class="sg-read">ティーエルエス</span><span class="sg-mean">HTTPS で使われる暗号化プロトコル</span></div>
+      <div class="sg-row"><span class="sg-sym">MFA</span><span class="sg-read">多要素認証</span><span class="sg-mean">知識＋所持＋生体の2つ以上</span></div>
+    </div>
+    <div class="sg-sec">
+      <div class="sg-sec-title">■ アルゴリズム</div>
+      <div class="sg-row"><span class="sg-sym">O(n)</span><span class="sg-read">オーエヌ</span><span class="sg-mean">計算量がnに比例（線形探索）</span></div>
+      <div class="sg-row"><span class="sg-sym">O(n²)</span><span class="sg-read">オーエヌ二乗</span><span class="sg-mean">バブル/選択/挿入ソート</span></div>
+      <div class="sg-row"><span class="sg-sym">O(log n)</span><span class="sg-read">オーログエヌ</span><span class="sg-mean">二分探索・高効率アルゴリズム</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ========== 目次トグル（上からプルダウン）==========
+(function() {
+  var btn = document.getElementById('nav-toggle-btn');
+  var nav = document.querySelector('nav');
+  var overlay = document.getElementById('nav-overlay');
+  if (!btn || !nav) return;
+
+  function openNav() {
+    nav.classList.add('nav-open');
+    btn.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    if (overlay) overlay.classList.add('active');
+  }
+  function closeNav() {
+    nav.classList.remove('nav-open');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    if (overlay) overlay.classList.remove('active');
+  }
+
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (nav.classList.contains('nav-open')) closeNav();
+    else openNav();
+  });
+
+  if (overlay) overlay.addEventListener('click', closeNav);
+
+  nav.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      setTimeout(closeNav, 200);
+    });
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeNav();
+  });
+})();
+
+// ========== 用語ガイドパネル ==========
+(function() {
+  var btn = document.getElementById('sym-guide-btn');
+  var panel = document.getElementById('sym-guide-panel');
+  if (!btn || !panel) return;
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    panel.classList.toggle('open');
+  });
+  document.addEventListener('click', function(e) {
+    if (!panel.contains(e.target) && e.target !== btn) {
+      panel.classList.remove('open');
+    }
+  });
+})();
+
+// ========== 暗記カードのホバー効果 ==========
+document.querySelectorAll('.memo-card').forEach(function(card) {
+  var q = card.querySelector('.memo-q');
+  var a = card.querySelector('.memo-a');
+  if (!q || !a) return;
+  var originalQText = q.textContent;
+  var answerText = a.textContent;
+  // フリップ効果（タップ/クリックで答えを表示/非表示）
+  var shown = true;
+  card.addEventListener('click', function() {
+    shown = !shown;
+    a.style.opacity = shown ? '1' : '0';
+    card.style.background = shown ? '#fff' : '#f0f9ff';
+  });
+});
+</script>
+
+</body>
+</html>
